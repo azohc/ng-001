@@ -1,0 +1,59 @@
+div.bottle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.neck,
+header,
+footer {
+  background-color: rgb(37, 25, 13);
+  border: 3px rgba(58, 156, 38, 0.74) solid;
+
+  height: 20px;
+  width: 100%;
+}
+
+div.neck {
+  div.cork {
+    margin-top: -6px;
+    z-index: -5;
+    width: 90%;
+    margin-inline: auto;
+    height: 14px;
+    background-color: rgb(124, 92, 22);
+  }
+  z-index: 10;
+  margin-bottom: -3px;
+  width: 25%;
+  height: 20px;
+  border-bottom: 3px;
+  background-color: rgb(37, 25, 13);
+  border: 3px rgba(58, 156, 38, 0.74) solid;
+  border-bottom-color: rgb(37, 25, 13);
+}
+
+header {
+  border-bottom: 0;
+  border-top-right-radius: 11px;
+  border-top-left-radius: 11px;
+}
+
+footer {
+  border-top: 0;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+}
+
+p.label {
+  background: white;
+  border: 2px rgb(12, 12, 12) solid;
+  border-bottom: 0px;
+  border-top: 0px;
+  // padding: 8px 16px;
+  margin: 0;
+  padding: 8px 1px;
+  color: rgb(12, 12, 12);
+  width: 100%;
+  text-align: center;
+}
