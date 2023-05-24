@@ -1,7 +1,11 @@
 <div class="product-card__container">
-  image
-  <div class="details">
-    <app-heading size="medium"> product name </app-heading>
-    <span>price</span>
+  <img
+    [attr.src]="product.image"
+    [attr.alt]="imageAltAttr"
+    class="product-card__image"
+  />
+  <div class="product-card__details">
+    <app-heading size="medium">{{ product.title }}</app-heading>
+    <app-heading size="small">{{ product.price }}</app-heading>
   </div>
 </div>

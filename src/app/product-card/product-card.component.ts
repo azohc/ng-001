@@ -10,6 +10,13 @@ export class ProductCardComponent implements OnInit {
   @Input()
   product!: Product;
 
+  @Input()
+  variant: 'small' | 'large' = 'small';
+
+  get imageAltAttr() {
+    return `${this.product.title}'s image`;
+  }
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,12 +1,13 @@
 <section class="products-cart__container">
-  <app-heading size="large">Cart</app-heading>
-  <ng-template [ngIf]="cartItems.length > 0" [ngElse]="emptyCart">
-    <ul class="products-cart__item-list">
-      <li *ngFor="let item of cartItems" class="products-cart__item">
-        {{ item.title }}
-      </li>
-    </ul>
-  </ng-template>
+  <app-heading>Cart</app-heading>
+  <ul
+    *ngIf="cartItems.length > 0; else emptyCart"
+    class="products-cart__item-list"
+  >
+    <li *ngFor="let item of cartItems" class="products-cart__item">
+      <app-product-card [product]="item"></app-product-card>
+    </li>
+  </ul>
 
   <ng-template #emptyCart> cart is empty </ng-template>
 
