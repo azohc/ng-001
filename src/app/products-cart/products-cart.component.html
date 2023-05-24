@@ -1,3 +1,14 @@
-<div class="container">
-  <p>products-cart works!</p>
-</div>
+<section class="products-cart__container">
+  <app-heading size="large">Cart</app-heading>
+  <ng-template [ngIf]="cartItems.length > 0" [ngElse]="emptyCart">
+    <ul class="products-cart__item-list">
+      <li *ngFor="let item of cartItems" class="products-cart__item">
+        {{ item.title }}
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-template #emptyCart> cart is empty </ng-template>
+
+  <app-heading>Total {{ cartTotal }} </app-heading>
+</section>

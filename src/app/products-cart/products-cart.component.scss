@@ -1,0 +1,12 @@
+.products-cart__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.products-cart__item-list {
+  padding: 0;
+}
+
+.products-cart__item {
+  list-style: none;
+}
