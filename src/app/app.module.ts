@@ -8,6 +8,7 @@ import { ProductsCatalogueComponent } from './products-catalogue/products-catalo
 import { ProductsCartComponent } from './products-cart/products-cart.component';
 import { HeadingComponent } from './heading/heading.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductCartTotalComponent } from './product-cart-total/product-cart-total.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ProductsCartComponent,
     HeadingComponent,
     ProductCardComponent,
+    ProductCartTotalComponent,
   ],
   // TODO does it make sense to separate cart/catalogue into diff modules?
   imports: [BrowserModule],

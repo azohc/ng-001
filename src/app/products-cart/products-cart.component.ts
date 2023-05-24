@@ -14,9 +14,7 @@ export class ProductsCartComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get cartTotal() {
-    return this.cartItems
-      .reduce((prev, curr) => prev + curr.price, 0)
-      .toFixed(2);
+  get totalCartSum() {
+    return this.cartItems.reduce((prev, curr) => prev + curr.price, 0);
   }
 }

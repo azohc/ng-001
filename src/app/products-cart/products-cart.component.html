@@ -13,5 +13,8 @@
     <p>Your cart is empty.</p>
   </ng-template>
 
-  <app-heading class="products-cart__total">Total {{ cartTotal }} </app-heading>
+  <app-product-cart-total
+    [total]="totalCartSum"
+    class="products-cart__total"
+  ></app-product-cart-total>
 </section>
