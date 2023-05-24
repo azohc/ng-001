@@ -1,6 +1,9 @@
 .products-cart__container {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
 }
 
 .products-cart__item-list {

@@ -1,0 +1,13 @@
+.products__container {
+  display: flex;
+}
+
+.products__catalog {
+  flex-basis: 75%;
+}
+
+@media (max-width: 700px) {
+  .products__container {
+    flex-direction: column;
+  }
+}
