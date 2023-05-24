@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeadingComponent implements OnInit {
   @Input()
-  size: 'large' | 'medium' = 'large';
+  size: 'large' | 'medium' | 'small' = 'large';
 
   constructor() {}
 
