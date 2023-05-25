@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../products/types';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products-catalogue',
@@ -9,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductsCatalogueComponent {
   @Input()
-  products!: Observable<Product[]>;
+  products: Product[] = [];
 
   @Output()
   addedToCart = new EventEmitter<number>();

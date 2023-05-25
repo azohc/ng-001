@@ -7,10 +7,5 @@ import { Product } from './products/types';
   providedIn: 'root',
 })
 export class ProductService {
-  // TODO ask Pablo
-  // if this function is fetching data asynchronously,
-  // it makes sense for it to return an Observable, right?
-  getAllProducts(): Observable<Product[]> {
-    return of(products);
-  }
+  products$: Observable<Product[]> = of(products);
 }

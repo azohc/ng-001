@@ -7,6 +7,7 @@ import { Product } from '../products/types';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent {
+  // TODO NG UPDATE to use required
   @Input()
   product!: Product;
 
