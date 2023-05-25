@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from './types';
 import { ProductService } from '../product.service';
-import { Observable, find, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   products: Observable<Product[]> = this.productsService.getAllProducts();
   cartItems: Product[] = [];
 
   constructor(private productsService: ProductService) {}
-
-  ngOnInit(): void {}
 
   handleAddedToCartEvent(id: number) {
     // this.products.forEach((products) =>

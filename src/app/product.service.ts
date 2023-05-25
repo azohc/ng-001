@@ -7,8 +7,6 @@ import { Product } from './products/types';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor() {}
-
   // TODO ask Pablo
   // if this function is fetching data asynchronously,
   // it makes sense for it to return an Observable, right?

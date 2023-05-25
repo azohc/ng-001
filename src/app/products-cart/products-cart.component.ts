@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from '../products/types';
 
 @Component({
@@ -6,13 +6,9 @@ import { Product } from '../products/types';
   templateUrl: './products-cart.component.html',
   styleUrls: ['./products-cart.component.scss'],
 })
-export class ProductsCartComponent implements OnInit {
+export class ProductsCartComponent {
   @Input()
   cartItems: Product[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   get totalCartSum() {
     return this.cartItems.reduce((prev, curr) => prev + curr.price, 0);

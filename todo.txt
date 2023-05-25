@@ -1,0 +1,22 @@
+required @Inputs: how to handle? exclamation? undefined?
+
+observable for service?
+
+
+tests: how to 
+
+
+modules:
+
+shared module {
+  product-card
+  heading
+}
+
+does it make sense to make a shared module if there's only one other module (app module)
+
+
+
+
+
+
