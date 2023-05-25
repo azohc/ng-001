@@ -5,14 +5,3 @@ main {
   margin-inline: auto;
   align-items: center;
 }
-
-.bottle-row {
-  display: flex;
-  gap: 2rem;
-  align-items: end;
-}
-
-// TODO make bottles draggable.. with directive?
-// app-bottle {
-//   position: absolute;
-// }
