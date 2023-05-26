@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BottleComponent } from './bottle/bottle.component';
-import { HeadingComponent } from './heading/heading.component';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { ProductCardComponent } from './product-card/product-card.component';
+import { BottleComponent } from './components/bottle/bottle.component';
+import { HeadingComponent } from './components/heading/heading.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
