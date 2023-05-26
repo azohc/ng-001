@@ -11,17 +11,27 @@
   </div>
   <div class="product-card__content">
     <div class="product-card__details">
-      <app-heading size="medium" class="product-card__title">{{
-        product.title
-      }}</app-heading>
-      <app-heading size="small">{{ product.price }}</app-heading>
+      <app-heading
+        [size]="variant === 'large' ? 'medium' : 'small'"
+        class="product-card__title"
+        >{{ product.title }}</app-heading
+      >
+
+      <app-heading *ngIf="variant === 'large'; else smallerPrice" size="small">
+        <!-- TODO currency pipe -->
+        {{ product.price }}
+      </app-heading>
+      <!-- TODO currency pipe -->
+      <ng-template #smallerPrice>
+        <span> {{ product.price }} </span>
+      </ng-template>
     </div>
-    <button
+    <app-button
       *ngIf="variant === 'large'"
       (click)="emitAddedToCartEvent()"
       class="product-card__add-to-card"
     >
       Add to cart
-    </button>
+    </app-button>
   </div>
 </div>
