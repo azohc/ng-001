@@ -2,11 +2,13 @@
   class="product-card__container"
   [class.product-card__container-large]="variant === 'large'"
 >
-  <img
-    [attr.src]="product.image"
-    [attr.alt]="imageAltAttr"
-    class="product-card__image"
-  />
+  <div class="product-card__image-container">
+    <img
+      [attr.src]="product.image"
+      [attr.alt]="imageAltAttr"
+      class="product-card__image"
+    />
+  </div>
   <div class="product-card__content">
     <div class="product-card__details">
       <app-heading size="medium" class="product-card__title">{{
