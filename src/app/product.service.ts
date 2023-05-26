@@ -7,9 +7,5 @@ import { Product } from './products/types';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor() {}
-
-  getAllProducts(): Observable<Product[]> {
-    return of(products);
-  }
+  products$: Observable<Product[]> = of(products);
 }

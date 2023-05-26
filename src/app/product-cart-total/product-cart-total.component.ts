@@ -1,14 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-cart-total',
   templateUrl: './product-cart-total.component.html',
 })
-export class ProductCartTotalComponent implements OnInit {
+export class ProductCartTotalComponent {
   @Input()
-  total: number = 0;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  total = 0;
 }

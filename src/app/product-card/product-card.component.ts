@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../products/types';
 
 @Component({
@@ -6,7 +6,8 @@ import { Product } from '../products/types';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
+  // TODO NG UPDATE to use required
   @Input()
   product!: Product;
 
@@ -20,11 +21,7 @@ export class ProductCardComponent implements OnInit {
     return `${this.product.title}'s image`;
   }
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  emitAddedToCartEvent(id: number) {
+  emitAddedToCartEvent() {
     this.addedToCart.emit(this.product.id);
   }
 }

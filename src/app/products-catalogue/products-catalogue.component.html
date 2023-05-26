@@ -1,7 +1,7 @@
 <section class="products-catalogue">
   <app-heading>Products catalogue</app-heading>
   <ul class="products-catalogue__items">
-    <li *ngFor="let product of products | async">
+    <li *ngFor="let product of products">
       <app-product-card
         [product]="product"
         (addedToCart)="bubbleAddedToCartEvent($event)"

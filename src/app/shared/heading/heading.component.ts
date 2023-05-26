@@ -1,15 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-heading',
   templateUrl: './heading.component.html',
   styleUrls: ['./heading.component.scss'],
 })
-export class HeadingComponent implements OnInit {
+export class HeadingComponent {
   @Input()
   size: 'large' | 'medium' | 'small' = 'large';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
