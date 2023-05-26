@@ -1,8 +1,14 @@
 <section class="products-cart__container">
   <app-heading>Cart</app-heading>
-  <ul *ngIf="cartItems.length; else emptyCart" class="products-cart__item-list">
-    <li *ngFor="let item of cartItems" class="products-cart__item">
-      <app-product-card [product]="item"></app-product-card>
+  <ul *ngIf="cartItems.length; else emptyCart" class="products-cart__items">
+    <li
+      *ngFor="let kv of groupedCartItems | keyvalue"
+      class="products-cart__list-item"
+    >
+      <app-product-card [product]="kv.key"></app-product-card>
+      <div *ngIf="kv.value > 1" class="products-cart__list-item-count">
+        x{{ kv.value }}
+      </div>
     </li>
   </ul>
 

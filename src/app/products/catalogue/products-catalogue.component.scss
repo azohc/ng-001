@@ -8,5 +8,10 @@
   gap: 1rem;
   list-style: none;
   padding: 0;
-  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .products-catalogue__items {
+    justify-content: center;
+  }
 }
