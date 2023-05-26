@@ -2,15 +2,22 @@
   display: flex;
   border: 2px #d1d1d1 solid;
   align-items: center;
+  border-radius: 3px;
+  gap: 1rem;
 
-  .product-card__image {
-    // TODO set background of image in parent container to d1d1d1
-    mix-blend-mode: multiply;
-    padding: 0.5rem;
-    height: 4rem;
-    width: auto;
-    aspect-ratio: 1/1;
-    object-fit: scale-down;
+  .product-card__image-container {
+    background-color: #d1d1d1;
+    display: flex;
+    justify-content: center;
+
+    .product-card__image {
+      mix-blend-mode: multiply;
+      padding: 0.5rem;
+      height: 5rem;
+      width: auto;
+      aspect-ratio: 1/1;
+      object-fit: scale-down;
+    }
   }
 
   .product-card__content {
@@ -30,8 +37,10 @@
   align-items: normal;
   width: 20rem;
 
-  .product-card__image {
-    height: 9rem;
+  .product-card__image-container {
+    .product-card__image {
+      height: 9rem;
+    }
   }
 
   .product-card__content {
