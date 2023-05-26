@@ -1,9 +1,13 @@
 .products__container {
   display: flex;
+  justify-content: space-between;
 }
 
 .products__catalog {
   flex-basis: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 700px) {

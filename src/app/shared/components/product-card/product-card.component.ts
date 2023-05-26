@@ -17,11 +17,15 @@ export class ProductCardComponent {
   @Output()
   addedToCart = new EventEmitter<number>();
 
+  justAddedToCart = false;
+
   get imageAltAttr() {
     return `${this.product.title}'s image`;
   }
 
-  emitAddedToCartEvent() {
+  handleAddToCartClick() {
     this.addedToCart.emit(this.product.id);
+    this.justAddedToCart = true;
+    setTimeout(() => (this.justAddedToCart = false), 1000);
   }
 }
