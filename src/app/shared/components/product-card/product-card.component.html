@@ -12,7 +12,7 @@
       <app-heading size="medium" class="product-card__title">{{
         product.title
       }}</app-heading>
-      <app-heading size="small">{{ product.price }}</app-heading>
+      <app-heading size="small">{{ product.price | date : "eur" }}</app-heading>
     </div>
     <button
       *ngIf="variant === 'large'"
