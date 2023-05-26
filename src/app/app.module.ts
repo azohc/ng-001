@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsCatalogueModule } from './products-catalogue/products-catalogue.module';
-import { SharedModule } from './shared/shared.module';
 import { ProductsCartModule } from './products-cart/products-cart.module';
 
 @NgModule({
