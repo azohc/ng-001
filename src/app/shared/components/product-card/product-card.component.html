@@ -18,12 +18,10 @@
       >
 
       <app-heading *ngIf="variant === 'large'; else smallerPrice" size="small">
-        <!-- TODO currency pipe -->
-        {{ product.price }}
+        {{ product.price | currency }}
       </app-heading>
-      <!-- TODO currency pipe -->
       <ng-template #smallerPrice>
-        <span> {{ product.price }} </span>
+        <span> {{ product.price | currency }} </span>
       </ng-template>
     </div>
     <app-button
