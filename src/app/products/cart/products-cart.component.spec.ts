@@ -1,4 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 import { ProductsCartComponent } from './products-cart.component';
 
@@ -8,11 +11,12 @@ describe('ProductsCartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductsCartComponent ]
-    })
-    .compileComponents();
+      declarations: [ProductsCartComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ProductsCartComponent);
+    fixture = TestBed.createComponent(
+      ProductsCartComponent
+    );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

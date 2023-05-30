@@ -3,17 +3,17 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { ButtonComponent } from './button.component';
+import { TabComponent } from './tab.component';
 
-describe('ButtonComponent', () => {
-  let component: ButtonComponent;
-  let fixture: ComponentFixture<ButtonComponent>;
+describe('TabComponent', () => {
+  let component: TabComponent;
+  let fixture: ComponentFixture<TabComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ButtonComponent],
+      declarations: [TabComponent],
     });
-    fixture = TestBed.createComponent(ButtonComponent);
+    fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,19 @@
+button.tab {
+  color: rgba(0 0 0 / 0.4);
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border: 0px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 500ms;
+  border-radius: 4px;
+
+  &:hover {
+    color: rgba(0 0 0 / 0.6);
+    background-color: #d1d1d1cc;
+  }
+
+  &.active {
+    color: rgba(0 0 0 / 1);
+    border-bottom: 3px solid #d1d1d1;
+  }
+}

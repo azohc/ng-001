@@ -5,7 +5,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCartTotalComponent } from './product-cart-total/product-cart-total.component';
 
 @NgModule({
-  declarations: [ProductsCartComponent, ProductCartTotalComponent],
+  declarations: [
+    ProductsCartComponent,
+    ProductCartTotalComponent,
+  ],
   imports: [CommonModule, SharedModule],
   exports: [ProductsCartComponent],
 })

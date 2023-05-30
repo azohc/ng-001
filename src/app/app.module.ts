@@ -7,7 +7,11 @@ import { ProductsCartModule } from './products/cart/products-cart.module';
 
 @NgModule({
   declarations: [AppComponent, ProductsComponent],
-  imports: [BrowserModule, ProductsCatalogueModule, ProductsCartModule],
+  imports: [
+    BrowserModule,
+    ProductsCatalogueModule,
+    ProductsCartModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

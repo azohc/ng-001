@@ -1,1 +1,15 @@
-<p>product-category-tabs works!</p>
+<div class="category-tabs-container">
+  <app-tab
+    *ngFor="let tab of tabs"
+    [active]="tab === activeTab"
+    (tabClicked)="emitTabClicked(tab)"
+  >
+    {{ tab }}
+  </app-tab>
+  <app-tab
+    *ngIf="activeTab"
+    (tabClicked)="emitTabClicked()"
+  >
+    clear
+  </app-tab>
+</div>

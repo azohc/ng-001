@@ -1,4 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 
 import { ProductCategoryTabsComponent } from './product-category-tabs.component';
 
@@ -8,9 +11,11 @@ describe('ProductCategoryTabsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductCategoryTabsComponent]
+      declarations: [ProductCategoryTabsComponent],
     });
-    fixture = TestBed.createComponent(ProductCategoryTabsComponent);
+    fixture = TestBed.createComponent(
+      ProductCategoryTabsComponent
+    );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

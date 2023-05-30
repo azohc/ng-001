@@ -1,6 +1,8 @@
 <div
   class="product-card__container"
-  [class.product-card__container-large]="variant === 'large'"
+  [class.product-card__container-large]="
+    variant === 'large'
+  "
 >
   <div class="product-card__image-container">
     <img
@@ -17,7 +19,10 @@
         >{{ product.title }}</app-heading
       >
 
-      <app-heading *ngIf="variant === 'large'; else smallerPrice" size="small">
+      <app-heading
+        *ngIf="variant === 'large'; else smallerPrice"
+        size="small"
+      >
         {{ product.price | currency }}
       </app-heading>
       <ng-template #smallerPrice>

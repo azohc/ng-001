@@ -11,7 +11,10 @@ export class ProductsCartComponent {
   cartItems: Product[] = [];
 
   get totalCartSum() {
-    return this.cartItems.reduce((prev, curr) => prev + curr.price, 0);
+    return this.cartItems.reduce(
+      (prev, curr) => prev + curr.price,
+      0
+    );
   }
 
   get groupedCartItems(): Map<Product, number> {

@@ -1,12 +1,20 @@
 <section class="products-cart__container">
   <app-heading>Cart</app-heading>
-  <ul *ngIf="cartItems.length; else emptyCart" class="products-cart__items">
+  <ul
+    *ngIf="cartItems.length; else emptyCart"
+    class="products-cart__items"
+  >
     <li
       *ngFor="let kv of groupedCartItems | keyvalue"
       class="products-cart__list-item"
     >
-      <app-product-card [product]="kv.key"></app-product-card>
-      <div *ngIf="kv.value > 1" class="products-cart__list-item-count">
+      <app-product-card
+        [product]="kv.key"
+      ></app-product-card>
+      <div
+        *ngIf="kv.value > 1"
+        class="products-cart__list-item-count"
+      >
         x{{ kv.value }}
       </div>
     </li>
@@ -16,8 +24,13 @@
     <p>Your cart is empty.</p>
   </ng-template>
 
-  <span *ngIf="cartItems.length" class="products-cart__total-items">
-    {{ cartItems.length }} item{{ cartItems.length !== 1 ? "s" : "" }}
+  <span
+    *ngIf="cartItems.length"
+    class="products-cart__total-items"
+  >
+    {{ cartItems.length }} item{{
+      cartItems.length !== 1 ? "s" : ""
+    }}
   </span>
 
   <app-product-cart-total
