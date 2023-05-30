@@ -1,0 +1,19 @@
+button.btn {
+  border: 2px #d1d1d1 solid;
+  border-radius: 3px;
+  border-color: #d1d1d1;
+  min-width: 85px;
+  padding: 4px 8px;
+  will-change: transform;
+  transition: transform 300ms;
+
+  &:hover {
+    transform: scale(1.02);
+    border-color: #a0a0a0;
+  }
+
+  &:active {
+    background-color: #c3c3c3;
+    border-color: #c3c3c3;
+  }
+}

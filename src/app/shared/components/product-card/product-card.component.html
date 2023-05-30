@@ -2,24 +2,35 @@
   class="product-card__container"
   [class.product-card__container-large]="variant === 'large'"
 >
-  <img
-    [attr.src]="product.image"
-    [attr.alt]="imageAltAttr"
-    class="product-card__image"
-  />
+  <div class="product-card__image-container">
+    <img
+      [attr.src]="product.image"
+      [attr.alt]="imageAltAttr"
+      class="product-card__image"
+    />
+  </div>
   <div class="product-card__content">
     <div class="product-card__details">
-      <app-heading size="medium" class="product-card__title">{{
-        product.title
-      }}</app-heading>
-      <app-heading size="small">{{ product.price | date : "eur" }}</app-heading>
+      <app-heading
+        [size]="variant === 'large' ? 'medium' : 'small'"
+        class="product-card__title"
+        >{{ product.title }}</app-heading
+      >
+
+      <app-heading *ngIf="variant === 'large'; else smallerPrice" size="small">
+        {{ product.price | currency }}
+      </app-heading>
+      <ng-template #smallerPrice>
+        <span> {{ product.price | currency }} </span>
+      </ng-template>
     </div>
-    <button
+    <app-button
       *ngIf="variant === 'large'"
-      (click)="emitAddedToCartEvent()"
+      (click)="handleAddToCartClick()"
       class="product-card__add-to-card"
+      [class.clicked]="justAddedToCart"
     >
       Add to cart
-    </button>
+    </app-button>
   </div>
 </div>

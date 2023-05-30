@@ -345,10 +345,20 @@
     "@jridgewell/trace-mapping" "^0.3.17"
     jsesc "^2.5.1"
 
-"@babel/generator@^7.21.4", "@babel/generator@^7.21.5":
+"@babel/generator@^7.21.4":
   version "7.21.9"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.21.9.tgz#3a1b706e07d836e204aee0650e8ee878d3aaa241"
   integrity sha512-F3fZga2uv09wFdEjEQIJxXALXfz0+JaOb7SabvVMmjHxeVTuGW8wgE8Vp1Hd7O+zMTYtcfEISGRzPkeiaPPsvg==
+  dependencies:
+    "@babel/types" "^7.21.5"
+    "@jridgewell/gen-mapping" "^0.3.2"
+    "@jridgewell/trace-mapping" "^0.3.17"
+    jsesc "^2.5.1"
+
+"@babel/generator@^7.21.5":
+  version "7.21.5"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.21.5.tgz#c0c0e5449504c7b7de8236d99338c3e2a340745f"
+  integrity sha512-SrKK/sRv8GesIW1bDagf9cCG38IOMYZusoe1dfg0D8aiUe3Amvoj1QtjTPAWcfrZFvIwlleLb0gxzQidL9w14w==
   dependencies:
     "@babel/types" "^7.21.5"
     "@jridgewell/gen-mapping" "^0.3.2"
@@ -563,6 +573,11 @@
     js-tokens "^4.0.0"
 
 "@babel/parser@^7.14.7", "@babel/parser@^7.20.7", "@babel/parser@^7.21.4", "@babel/parser@^7.21.5", "@babel/parser@^7.21.8", "@babel/parser@^7.21.9":
+  version "7.21.9"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.21.9.tgz#ab18ea3b85b4bc33ba98a8d4c2032c557d23cf14"
+  integrity sha512-q5PNg/Bi1OpGgx5jYlvWZwAorZepEudDMCLtj967aeS7WMont7dUZI46M2XwcIQqvUlMxWfdLFu4S/qSxeUu5g==
+
+"@babel/parser@^7.21.4":
   version "7.21.9"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.21.9.tgz#ab18ea3b85b4bc33ba98a8d4c2032c557d23cf14"
   integrity sha512-q5PNg/Bi1OpGgx5jYlvWZwAorZepEudDMCLtj967aeS7WMont7dUZI46M2XwcIQqvUlMxWfdLFu4S/qSxeUu5g==

@@ -4,7 +4,7 @@ import { BottleComponent } from './components/bottle/bottle.component';
 import { HeadingComponent } from './components/heading/heading.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { CurrencyPipe } from '../currency.pipe';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { CurrencyPipe } from '../currency.pipe';
     HeadingComponent,
     SpinnerComponent,
     ProductCardComponent,
-    CurrencyPipe,
+    ButtonComponent,
   ],
   imports: [CommonModule],
   exports: [HeadingComponent, ProductCardComponent],
