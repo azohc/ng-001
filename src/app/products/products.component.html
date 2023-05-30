@@ -1,9 +1,13 @@
 <div class="products__container">
-  <app-products-catalogue
-    [products]="products"
-    (addedToCart)="handleAddedToCartEvent($event)"
-    class="products__catalog"
-  ></app-products-catalogue>
+  <div class="products__catalogue-container">
+    <app-heading>Products catalogue</app-heading>
+    <app-product-category-tabs></app-product-category-tabs>
+    <app-products-catalogue
+      [products]="products"
+      (addedToCart)="handleAddedToCartEvent($event)"
+      class="products__catalogue"
+    ></app-products-catalogue>
+  </div>
   <app-products-cart
     [cartItems]="cartItems"
     class="products__cart"

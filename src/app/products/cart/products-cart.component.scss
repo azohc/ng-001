@@ -30,3 +30,9 @@ li.products-cart__list-item {
 .products-cart__total {
   align-self: flex-end;
 }
+
+@media (max-width: 700px) {
+  .products-cart__container {
+    max-width: 100%;
+  }
+}

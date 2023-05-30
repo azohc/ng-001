@@ -3,11 +3,15 @@
   justify-content: space-between;
 }
 
-.products__catalog {
-  flex-basis: 75%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.products__catalogue-container {
+  padding: 1rem;
+
+  .products__catalogue {
+    flex-basis: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media (max-width: 700px) {
