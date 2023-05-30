@@ -6,6 +6,7 @@ button.btn {
   padding: 4px 8px;
   will-change: transform;
   transition: transform 300ms;
+  transition: border-color 500ms;
 
   &:hover {
     transform: scale(1.02);
