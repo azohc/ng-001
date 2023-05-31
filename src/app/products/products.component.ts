@@ -6,6 +6,7 @@ import {
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { Product } from '../core/models/product.model';
+import { FacetedTab } from './catalogue/tab/faceted-tab.model';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,7 @@ export class ProductsComponent
   subscription = new Subscription();
   products: Product[] = [];
   cartItems: Product[] = [];
-  categories: string[] = [];
+  categories: FacetedTab[] = [];
   categoryFilter?: string;
 
   constructor(private productsService: ProductService) {}
@@ -42,7 +43,9 @@ export class ProductsComponent
     products.forEach((product) => {
       set.add(product.category);
     });
-    this.categories = Array.from(set);
+    set.forEach((category) =>
+      this.categories.push({ category, products: 9 })
+    );
   }
 
   handleAddedToCartEvent(id: number) {

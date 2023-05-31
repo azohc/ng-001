@@ -3,17 +3,17 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { TabComponent } from './tab.component';
+import { FacetedTabComponent } from './faceted-tab.component';
 
 describe('TabComponent', () => {
-  let component: TabComponent;
-  let fixture: ComponentFixture<TabComponent>;
+  let component: FacetedTabComponent;
+  let fixture: ComponentFixture<FacetedTabComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TabComponent],
+      declarations: [FacetedTabComponent],
     });
-    fixture = TestBed.createComponent(TabComponent);
+    fixture = TestBed.createComponent(FacetedTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

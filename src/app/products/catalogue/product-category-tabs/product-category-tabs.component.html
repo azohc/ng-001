@@ -1,15 +1,16 @@
 <div class="category-tabs-container">
-  <app-tab
+  <app-faceted-tab
     *ngFor="let tab of tabs"
-    [active]="tab === activeTab"
-    (tabClicked)="emitTabClicked(tab)"
+    [active]="tab.category === activeTab"
+    [facet]="9"
+    (tabClicked)="emitTabClicked(tab.category)"
   >
     {{ tab }}
-  </app-tab>
-  <app-tab
+  </app-faceted-tab>
+  <app-faceted-tab
     *ngIf="activeTab"
     (tabClicked)="emitTabClicked()"
   >
     clear
-  </app-tab>
+  </app-faceted-tab>
 </div>
