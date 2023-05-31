@@ -2,11 +2,11 @@
   <div class="products__catalogue-container">
     <app-heading>Products catalogue</app-heading>
     <app-product-category-tabs
-      [tabs]="categories"
+      [productCategories]="productCategories"
       (tabClicked)="setCategoryFilter($event)"
     ></app-product-category-tabs>
     <app-products-catalogue
-      [products]="products"
+      [products]="catalogueProducts"
       (addedToCart)="handleAddedToCartEvent($event)"
       class="products__catalogue"
     ></app-products-catalogue>

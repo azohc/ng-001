@@ -4,7 +4,6 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { FacetedTab } from '../tab/faceted-tab.model';
 
 @Component({
   selector: 'app-product-category-tabs',
@@ -13,7 +12,7 @@ import { FacetedTab } from '../tab/faceted-tab.model';
 })
 export class ProductCategoryTabsComponent {
   @Input()
-  tabs!: FacetedTab[];
+  productCategories!: Map<string, number>;
 
   @Output()
   tabClicked = new EventEmitter<string>();

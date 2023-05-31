@@ -6,7 +6,6 @@ import {
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { Product } from '../core/models/product.model';
-import { FacetedTab } from './catalogue/tab/faceted-tab.model';
 
 @Component({
   selector: 'app-products',
@@ -19,7 +18,7 @@ export class ProductsComponent
   subscription = new Subscription();
   products: Product[] = [];
   cartItems: Product[] = [];
-  categories: FacetedTab[] = [];
+  productCategories = new Map<string, number>();
   categoryFilter?: string;
 
   constructor(private productsService: ProductService) {}
@@ -38,14 +37,23 @@ export class ProductsComponent
     this.subscription.unsubscribe();
   }
 
-  private populateCategories(products: Product[]) {
-    const set = new Set<string>();
-    products.forEach((product) => {
-      set.add(product.category);
-    });
-    set.forEach((category) =>
-      this.categories.push({ category, products: 9 })
+  get catalogueProducts() {
+    if (!this.categoryFilter) return this.products;
+    return this.products.filter(
+      (product) => product.category === this.categoryFilter
     );
+  }
+
+  private populateCategories(products: Product[]) {
+    products.forEach((product) => {
+      const { category } = product;
+      const numProducts =
+        this.productCategories.get(category);
+      this.productCategories.set(
+        category,
+        numProducts ? numProducts + 1 : 1
+      );
+    });
   }
 
   handleAddedToCartEvent(id: number) {
@@ -61,7 +69,6 @@ export class ProductsComponent
   }
 
   setCategoryFilter(category: string) {
-    // TODO leverage observables to react to a change in category
     this.categoryFilter = category;
   }
 }
