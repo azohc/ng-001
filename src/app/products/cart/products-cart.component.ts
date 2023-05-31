@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { map } from 'rxjs';
 import { CartService } from 'src/app/cart.service';
 import { Product } from 'src/app/core/models/product.model';

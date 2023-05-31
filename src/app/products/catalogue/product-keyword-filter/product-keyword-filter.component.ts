@@ -4,10 +4,12 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
   ViewChild,
 } from '@angular/core';
 import {
+  Subscription,
   distinctUntilChanged,
   filter,
   fromEvent,
@@ -20,7 +22,7 @@ import {
   styleUrls: ['./product-keyword-filter.component.scss'],
 })
 export class ProductKeywordFilterComponent
-  implements AfterViewInit
+  implements AfterViewInit, OnDestroy
 {
   @ViewChild('query')
   queryInput?: ElementRef;
@@ -31,11 +33,18 @@ export class ProductKeywordFilterComponent
   @Output()
   queryChanged = new EventEmitter<string>();
 
+  subscription = new Subscription();
+
   ngAfterViewInit() {
     if (!this.queryInput) return;
-    fromEvent(this.queryInput.nativeElement, 'keyup')
+    this.subscription = fromEvent(
+      this.queryInput.nativeElement,
+      'keyup'
+    )
       .pipe(
         filter(
+          // TODO why cant I type this event as KeyboardEvent?
+          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
           (event: any) => event.target.value.length > 2
         ),
         throttleTime(500),
@@ -47,6 +56,10 @@ export class ProductKeywordFilterComponent
           this.queryInput.nativeElement.value
         );
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   get placeholder() {
