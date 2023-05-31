@@ -1,10 +1,16 @@
 <div class="products__container">
   <div class="products__catalogue-container">
     <app-heading>Products catalogue</app-heading>
-    <app-product-category-tabs
-      [productCategories]="productCategories"
-      (tabClicked)="setCategoryFilter($event)"
-    ></app-product-category-tabs>
+    <div class="products__catalogue-controls">
+      <app-product-category-tabs
+        [productCategories]="productCategories"
+        (tabClicked)="setCategoryFilter($event)"
+      ></app-product-category-tabs>
+      <app-product-keyword-filter
+        [selectedCategory]="categoryFilter"
+      >
+      </app-product-keyword-filter>
+    </div>
     <app-products-catalogue
       [products]="catalogueProducts"
       (addedToCart)="handleAddedToCartEvent($event)"

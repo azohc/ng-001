@@ -9,6 +9,14 @@
   flex-direction: column;
   gap: 1rem;
 
+  .products__catalogue-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .products__catalogue {
     flex-basis: 75%;
     display: flex;

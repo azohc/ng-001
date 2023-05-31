@@ -5,10 +5,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-@media (max-width: 700px) {
-  .products-catalogue__items {
-    justify-content: center;
-  }
+  justify-content: center;
+  min-width: 60vw;
 }

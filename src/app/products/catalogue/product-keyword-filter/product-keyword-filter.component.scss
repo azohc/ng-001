@@ -1,0 +1,11 @@
+input.keyword-filter {
+  width: 8rem;
+  border-radius: 4px;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  background-color: #efefef;
+
+  &.large {
+    min-width: 15rem;
+  }
+}
