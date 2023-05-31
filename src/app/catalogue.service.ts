@@ -5,12 +5,18 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CatalogueService {
-  private categoryFilterSubject =
-    new BehaviorSubject<string>('');
+  private categoryFilterSubject = new BehaviorSubject('');
   categoryFilter$ =
     this.categoryFilterSubject.asObservable();
 
+  private keywordFilterSubject = new BehaviorSubject('');
+  keywordFilter$ = this.keywordFilterSubject.asObservable();
+
   setCategoryFilter(category: string) {
     this.categoryFilterSubject.next(category);
+  }
+
+  setKeywordFilter(query: string) {
+    this.keywordFilterSubject.next(query);
   }
 }

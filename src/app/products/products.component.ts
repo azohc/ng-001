@@ -28,20 +28,28 @@ export class ProductsComponent {
   );
 
   categoryFilter$ = this.catalogueService.categoryFilter$;
+  keywordFilter$ = this.catalogueService.keywordFilter$;
 
   catalogueProducts$ = combineLatest([
     this.products$,
     this.categoryFilter$,
+    this.keywordFilter$,
   ]).pipe(
-    map(([products, categoryFilter]) =>
-      products.filter((p) => {
-        if (!categoryFilter) return true;
-        return p.category === categoryFilter;
+    map(([products, categoryFilter, keywordFilter]) =>
+      products.filter((product) => {
+        let condition = true;
+        if (categoryFilter) {
+          condition = product.category === categoryFilter;
+        }
+        if (condition && keywordFilter) {
+          condition = product.title
+            .toLowerCase()
+            .includes(keywordFilter.toLowerCase());
+        }
+        return condition;
       })
     )
   );
-
-  keywordFilter?: string;
 
   emptyMap = new Map<string, number>();
 
@@ -55,6 +63,6 @@ export class ProductsComponent {
   }
 
   setKeywordFilter(query: string) {
-    this.keywordFilter = query;
+    this.catalogueService.setKeywordFilter(query);
   }
 }
