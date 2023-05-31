@@ -1,77 +1,57 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { combineLatest, map } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
-import { Product } from '../core/models/product.model';
+import { CatalogueService } from '../catalogue.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent
-  implements OnInit, OnDestroy
-{
-  subscription = new Subscription();
-  products: Product[] = [];
-  cartItems: Product[] = [];
-  productCategories = new Map<string, number>();
-  categoryFilter?: string;
+export class ProductsComponent {
+  products$ = this.productsService.products$;
+
+  productCategories$ = this.products$.pipe(
+    map((products) => {
+      const productCategoryMap = new Map<string, number>();
+      products.forEach((product) => {
+        const { category } = product;
+        const numProducts =
+          productCategoryMap.get(category);
+        productCategoryMap.set(
+          category,
+          numProducts ? numProducts + 1 : 1
+        );
+      });
+      return productCategoryMap;
+    })
+  );
+
+  categoryFilter$ = this.catalogueService.categoryFilter$;
+
+  catalogueProducts$ = combineLatest([
+    this.products$,
+    this.categoryFilter$,
+  ]).pipe(
+    map(([products, categoryFilter]) =>
+      products.filter((p) => {
+        if (!categoryFilter) return true;
+        return p.category === categoryFilter;
+      })
+    )
+  );
 
   keywordFilter?: string;
 
-  constructor(private productsService: ProductService) {}
+  emptyMap = new Map<string, number>();
 
-  ngOnInit(): void {
-    this.subscription =
-      this.productsService.products$.subscribe(
-        (products) => {
-          this.products = products;
-          this.populateCategories(products);
-        }
-      );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
-  get catalogueProducts() {
-    if (!this.categoryFilter) return this.products;
-    return this.products.filter(
-      (product) => product.category === this.categoryFilter
-    );
-  }
-
-  private populateCategories(products: Product[]) {
-    products.forEach((product) => {
-      const { category } = product;
-      const numProducts =
-        this.productCategories.get(category);
-      this.productCategories.set(
-        category,
-        numProducts ? numProducts + 1 : 1
-      );
-    });
-  }
-
-  handleAddedToCartEvent(id: number) {
-    const item = this.products.find(
-      (product) => product.id === id
-    );
-    if (!item) {
-      throw new Error(
-        `failed to add product with id ${id} to cart`
-      );
-    }
-    this.cartItems.push(item);
-  }
+  constructor(
+    private productsService: ProductService,
+    private catalogueService: CatalogueService
+  ) {}
 
   setCategoryFilter(category: string) {
-    this.categoryFilter = category;
+    this.catalogueService.setCategoryFilter(category);
   }
 
   setKeywordFilter(query: string) {

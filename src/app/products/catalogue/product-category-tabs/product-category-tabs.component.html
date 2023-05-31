@@ -1,11 +1,11 @@
 <div class="category-tabs-container">
   <app-faceted-tab
-    *ngFor="let tab of tabs"
-    [active]="tab === activeTab"
-    [facet]="productCategories.get(tab)"
-    (tabClicked)="emitTabClicked(tab)"
+    *ngFor="let entry of productCategories | keyvalue"
+    [active]="entry.key === activeTab"
+    [facet]="entry.value"
+    (tabClicked)="emitTabClicked(entry.key)"
   >
-    {{ tab }}
+    {{ entry.key }}
   </app-faceted-tab>
   <app-faceted-tab
     *ngIf="activeTab"

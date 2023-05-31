@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from 'src/app/core/models/product.model';
 
 @Component({
@@ -14,11 +9,4 @@ import { Product } from 'src/app/core/models/product.model';
 export class ProductsCatalogueComponent {
   @Input()
   products: Product[] = [];
-
-  @Output()
-  addedToCart = new EventEmitter<number>();
-
-  bubbleAddedToCartEvent(id: number) {
-    this.addedToCart.emit(id);
-  }
 }

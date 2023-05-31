@@ -3,24 +3,24 @@
     <app-heading>Products catalogue</app-heading>
     <div class="products__catalogue-controls">
       <app-product-category-tabs
-        [productCategories]="productCategories"
+        [productCategories]="
+          (productCategories$ | async) || emptyMap
+        "
         (tabClicked)="setCategoryFilter($event)"
       ></app-product-category-tabs>
       <!-- TODO use [(queryChanged)] to pass an initial value for query i.e. to load search from URL params-->
       <app-product-keyword-filter
-        [selectedCategory]="categoryFilter"
+        [selectedCategory]="(categoryFilter$ | async) || ''"
         (queryChanged)="setKeywordFilter($event)"
       >
       </app-product-keyword-filter>
     </div>
     <app-products-catalogue
-      [products]="catalogueProducts"
-      (addedToCart)="handleAddedToCartEvent($event)"
+      [products]="(catalogueProducts$ | async) || []"
       class="products__catalogue"
     ></app-products-catalogue>
   </div>
   <app-products-cart
-    [cartItems]="cartItems"
     class="products__cart"
   ></app-products-cart>
 </div>

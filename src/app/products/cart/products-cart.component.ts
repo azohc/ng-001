@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { map } from 'rxjs';
+import { CartService } from 'src/app/cart.service';
 import { Product } from 'src/app/core/models/product.model';
 
 @Component({
@@ -7,26 +9,28 @@ import { Product } from 'src/app/core/models/product.model';
   styleUrls: ['./products-cart.component.scss'],
 })
 export class ProductsCartComponent {
-  @Input()
-  cartItems: Product[] = [];
+  cartItems$ = this.cartService.cartItems$;
 
-  get totalCartSum() {
-    return this.cartItems.reduce(
-      (prev, curr) => prev + curr.price,
-      0
-    );
-  }
+  totalCartSum$ = this.cartItems$.pipe(
+    map((items) =>
+      items.reduce((prev, curr) => prev + curr.price, 0)
+    )
+  );
 
-  get groupedCartItems(): Map<Product, number> {
-    const map = new Map<Product, number>();
-    this.cartItems.forEach((product) => {
-      const count = map.get(product);
-      if (map.has(product) && count) {
-        map.set(product, count + 1);
-      } else {
-        map.set(product, 1);
-      }
-    });
-    return map;
-  }
+  groupedCartItems$ = this.cartItems$.pipe(
+    map((items) => {
+      const map = new Map<Product, number>();
+      items.forEach((product) => {
+        const count = map.get(product);
+        if (map.has(product) && count) {
+          map.set(product, count + 1);
+        } else {
+          map.set(product, 1);
+        }
+      });
+      return map;
+    })
+  );
+
+  constructor(private cartService: CartService) {}
 }

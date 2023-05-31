@@ -1,11 +1,13 @@
 <section class="products-cart__container">
   <app-heading>Cart</app-heading>
   <ul
-    *ngIf="cartItems.length; else emptyCart"
+    *ngIf="(cartItems$ | async)?.length; else emptyCart"
     class="products-cart__items"
   >
     <li
-      *ngFor="let kv of groupedCartItems | keyvalue"
+      *ngFor="
+        let kv of groupedCartItems$ | async | keyvalue
+      "
       class="products-cart__list-item"
     >
       <app-product-card
@@ -25,16 +27,16 @@
   </ng-template>
 
   <span
-    *ngIf="cartItems.length"
+    *ngIf="(cartItems$ | async)?.length"
     class="products-cart__total-items"
   >
-    {{ cartItems.length }} item{{
-      cartItems.length !== 1 ? "s" : ""
+    {{ (cartItems$ | async)?.length }} item{{
+      (cartItems$ | async)!.length !== 1 ? "s" : ""
     }}
   </span>
 
   <app-product-cart-total
-    [total]="totalCartSum"
+    [total]="(totalCartSum$ | async) || 0"
     class="products-cart__total"
   ></app-product-cart-total>
 </section>

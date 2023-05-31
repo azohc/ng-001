@@ -1,10 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { CartService } from 'src/app/cart.service';
 import { Product } from 'src/app/core/models/product.model';
 
 @Component({
@@ -20,9 +15,6 @@ export class ProductCardComponent implements OnDestroy {
   @Input()
   variant: 'small' | 'large' = 'small';
 
-  @Output()
-  addedToCart = new EventEmitter<number>();
-
   timeoutID?: number;
 
   justAddedToCart = false;
@@ -31,6 +23,8 @@ export class ProductCardComponent implements OnDestroy {
     return `${this.product.title}'s image`;
   }
 
+  constructor(private cartService: CartService) {}
+
   ngOnDestroy(): void {
     if (this.timeoutID) {
       clearTimeout(this.timeoutID);
@@ -38,11 +32,6 @@ export class ProductCardComponent implements OnDestroy {
   }
 
   handleAddToCartClick() {
-    this.addedToCart.emit(this.product.id);
-    this.justAddedToCart = true;
-    this.timeoutID = setTimeout(
-      () => (this.justAddedToCart = false),
-      1000
-    );
+    this.cartService.addItemToCart(this.product);
   }
 }
