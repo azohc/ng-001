@@ -19,6 +19,10 @@ export class ProductCategoryTabsComponent {
 
   activeTab?: string;
 
+  get tabs() {
+    return this.productCategories.keys();
+  }
+
   emitTabClicked(tab?: string) {
     this.tabClicked.emit(tab);
     this.activeTab = tab;

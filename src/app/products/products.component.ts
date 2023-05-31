@@ -21,6 +21,8 @@ export class ProductsComponent
   productCategories = new Map<string, number>();
   categoryFilter?: string;
 
+  keywordFilter?: string;
+
   constructor(private productsService: ProductService) {}
 
   ngOnInit(): void {
@@ -70,5 +72,9 @@ export class ProductsComponent
 
   setCategoryFilter(category: string) {
     this.categoryFilter = category;
+  }
+
+  setKeywordFilter(query: string) {
+    this.keywordFilter = query;
   }
 }
