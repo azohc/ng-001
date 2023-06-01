@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { CartService } from 'src/app/cart.service';
 import { Product } from 'src/app/core/models/product.model';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product-card',

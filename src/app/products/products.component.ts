@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { combineLatest, map } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
-import { CatalogueService } from '../catalogue.service';
+import { CatalogueService } from '../core/services/catalogue.service';
 
 @Component({
   selector: 'app-products',
