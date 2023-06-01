@@ -1,4 +1,11 @@
 .category-tabs-container {
   display: flex;
   gap: 0.5rem;
+  border: 1px solid #d1d1d1;
+  padding: 4px 4px;
+  border-radius: 4px;
+
+  &:hover {
+    border-color: #4b4b4b;
+  }
 }
