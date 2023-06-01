@@ -4,7 +4,7 @@ import { ProductsCatalogueComponent } from './products-catalogue.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCategoryTabsComponent } from './product-category-tabs/product-category-tabs.component';
 import { HeadingComponent } from 'src/app/shared/components/heading/heading.component';
-import { FacetedTabComponent } from './tab/faceted-tab.component';
+import { FacetedTabComponent } from './faceted-tab/faceted-tab.component';
 import { ProductKeywordFilterComponent } from './product-keyword-filter/product-keyword-filter.component';
 
 @NgModule({

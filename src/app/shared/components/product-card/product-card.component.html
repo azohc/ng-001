@@ -16,8 +16,10 @@
       <app-heading
         [size]="variant === 'large' ? 'medium' : 'small'"
         class="product-card__title"
-        >{{ product.title }}</app-heading
+        [appHighlight]="(keywordFilter$ | async) || ''"
       >
+        {{ product.title }}
+      </app-heading>
 
       <app-heading
         *ngIf="variant === 'large'; else smallerPrice"

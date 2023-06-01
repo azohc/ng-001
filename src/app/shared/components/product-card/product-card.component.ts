@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/core/models/product.model';
 import { CartService } from 'src/app/core/services/cart.service';
+import { CatalogueService } from 'src/app/core/services/catalogue.service';
 
 @Component({
   selector: 'app-product-card',
@@ -19,11 +20,16 @@ export class ProductCardComponent implements OnDestroy {
 
   justAddedToCart = false;
 
+  keywordFilter$ = this.catalogueService.keywordFilter$;
+
   get imageAltAttr() {
     return `${this.product.title}'s image`;
   }
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private catalogueService: CatalogueService
+  ) {}
 
   ngOnDestroy(): void {
     if (this.timeoutID) {
