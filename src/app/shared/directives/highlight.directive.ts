@@ -12,6 +12,11 @@ export class HighlightDirective implements OnChanges {
   @Input('appHighlight')
   stringToHighlight = '';
 
+  HIGHLIGHT_TAG_OPEN =
+    '<span style="background-color: yellow">';
+
+  HIGHLIGHT_TAG_CLOSE = '</span>';
+
   constructor(private elementRef: ElementRef) {}
 
   ngOnChanges(): void {
@@ -19,14 +24,9 @@ export class HighlightDirective implements OnChanges {
   }
 
   private highlightText() {
-    const HIGHLIGHT_TAG_OPEN =
-      '<span style="background-color: yellow">';
-    const HIGHLIGHT_TAG_CLOSE = '</span>';
     const text = this.elementRef.nativeElement.innerHTML;
 
     this.stringToHighlight = this.stringToHighlight.trim();
-
-    console.log(text);
 
     if (
       !text
@@ -34,9 +34,9 @@ export class HighlightDirective implements OnChanges {
         .includes(this.stringToHighlight.toLowerCase())
     ) {
       this.elementRef.nativeElement.innerHTML =
-        text.replace(HIGHLIGHT_TAG_OPEN, '');
+        text.replace(this.HIGHLIGHT_TAG_OPEN, '');
       this.elementRef.nativeElement.innerHTML =
-        text.replace(HIGHLIGHT_TAG_CLOSE, '');
+        text.replace(this.HIGHLIGHT_TAG_CLOSE, '');
       return;
     }
 
@@ -49,9 +49,9 @@ export class HighlightDirective implements OnChanges {
     const split = text.split(substring);
     this.elementRef.nativeElement.innerHTML = [
       split[0],
-      HIGHLIGHT_TAG_OPEN,
+      this.HIGHLIGHT_TAG_OPEN,
       substring,
-      HIGHLIGHT_TAG_CLOSE,
+      this.HIGHLIGHT_TAG_CLOSE,
       split[1],
     ].join('');
   }
