@@ -10,10 +10,11 @@ import {
 } from '@angular/core';
 import {
   Subscription,
+  debounceTime,
   distinctUntilChanged,
   filter,
   fromEvent,
-  throttleTime,
+  map,
 } from 'rxjs';
 
 @Component({
@@ -33,6 +34,11 @@ export class ProductKeywordFilterComponent
   @Output()
   queryChanged = new EventEmitter<string>();
 
+  get placeholder() {
+    if (!this.selectedCategory) return 'FILTER PRODUCTS';
+    return `FILTER ${this.selectedCategory.toUpperCase()} PRODUCTS`;
+  }
+
   subscription = new Subscription();
 
   ngAfterViewInit() {
@@ -42,12 +48,14 @@ export class ProductKeywordFilterComponent
       'keyup'
     )
       .pipe(
+        // TODO why cant I type this event as KeyboardEvent?
+        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+        map((event: any) => event.target.value),
         filter(
-          // TODO why cant I type this event as KeyboardEvent?
-          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-          (event: any) => event.target.value.length > 2
+          (value: string) =>
+            value.length === 0 || value.length > 2
         ),
-        throttleTime(500),
+        debounceTime(200),
         distinctUntilChanged()
       )
       .subscribe(() => {
@@ -60,10 +68,5 @@ export class ProductKeywordFilterComponent
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  get placeholder() {
-    if (!this.selectedCategory) return 'FILTER PRODUCTS';
-    return `FILTER ${this.selectedCategory.toUpperCase()} PRODUCTS`;
   }
 }
