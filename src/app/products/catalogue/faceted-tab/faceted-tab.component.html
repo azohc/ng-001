@@ -1,0 +1,8 @@
+<button
+  (click)="tabClicked.emit()"
+  class="tab"
+  [class.active]="active"
+>
+  <ng-content></ng-content>
+  <span *ngIf="facet">({{ facet }})</span>
+</button>
