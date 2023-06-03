@@ -1,0 +1,38 @@
+.page-navigator__container {
+  padding: 36px 0;
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.pages-container {
+  display: flex;
+}
+
+.page-active {
+  font-weight: 900;
+  background-color: black;
+  color: white;
+}
+
+.default-cursor {
+  cursor: default;
+}
+
+.no-border {
+  border-color: transparent;
+}
+
+.page-navigator__button {
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  border: 2px black solid;
+}

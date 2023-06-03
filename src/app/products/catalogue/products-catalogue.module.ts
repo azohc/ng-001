@@ -7,6 +7,7 @@ import { HeadingComponent } from 'src/app/shared/components/heading/heading.comp
 import { FacetedTabComponent } from './faceted-tab/faceted-tab.component';
 import { ProductKeywordFilterComponent } from './product-keyword-filter/product-keyword-filter.component';
 import { PageNavigatorComponent } from './page-navigator/page-navigator.component';
+import { PrevNextButtonComponent } from './prev-next-button/prev-next-button.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PageNavigatorComponent } from './page-navigator/page-navigator.componen
     FacetedTabComponent,
     ProductKeywordFilterComponent,
     PageNavigatorComponent,
+    PrevNextButtonComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [

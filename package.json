@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^16.0.3",
     "@angular/platform-browser-dynamic": "^16.0.3",
     "@angular/router": "^16.0.3",
+    "lodash-es": "^4.17.21",
     "rxjs": "~7.8.1",
     "tslib": "^2.5.2",
     "zone.js": "~0.13.0"
@@ -37,6 +38,7 @@
     "@angular/cli": "~16.0.3",
     "@angular/compiler-cli": "^16.0.3",
     "@types/jasmine": "~4.3.2",
+    "@types/lodash-es": "^4.17.7",
     "@typescript-eslint/eslint-plugin": "5.59.7",
     "@typescript-eslint/parser": "5.59.7",
     "eslint": "^8.41.0",

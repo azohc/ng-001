@@ -1,6 +1,68 @@
-<div>
-  page-nav:
-  {{ totalItems }}
-  {{ pageSize }}
-  {{ currentPage }}
+<div class="page-navigator__container">
+  <app-prev-next-button
+    [disabled]="currentPage <= 0"
+    [isPrev]="true"
+    (click)="onPageSelected(currentPage - 1)"
+  />
+  <div class="pages-container">
+    <ng-template [ngIf]="lastPage !== 0">
+      <button
+        class="page-navigator__button"
+        *ngIf="currentPage - nrPrevNextPages > 0"
+        (click)="onPageSelected(0)"
+      >
+        1
+      </button>
+      <button
+        class="page-navigator__button"
+        v-if="currentPage - nrPrevNextPages > 1"
+        :classes="['default-cursor', 'no-border']"
+      >
+        ...
+      </button>
+      <button
+        class="page-navigator__button"
+        *ngFor="let prevPage of previousPagesRange"
+        (click)="onPageSelected(prevPage)"
+      >
+        {{ prevPage + 1 }}
+      </button>
+    </ng-template>
+    <button
+      class="page-navigator__button"
+      :classes="['page-active']"
+    >
+      {{ currentPage + 1 }}
+    </button>
+    <ng-template [ngIf]="lastPage !== 0">
+      <button
+        class="page-navigator__button"
+        *ngFor="let nextPage of nextPagesRange"
+        (click)="onPageSelected(nextPage)"
+      >
+        {{ nextPage + 1 }}
+      </button>
+      <button
+        class="page-navigator__button"
+        *ngIf="
+          currentPage + nrPrevNextPages + 1 < lastPage - 1
+        "
+        :classes="['default-cursor', 'no-border']"
+      >
+        ...
+      </button>
+      <button
+        class="page-navigator__button"
+        *ngIf="currentPage + nrPrevNextPages + 1 < lastPage"
+        (click)="onPageSelected(lastPage - 1)"
+      >
+        {{ lastPage }}
+      </button>
+    </ng-template>
+  </div>
+  <app-prev-next-button
+    [isPrev]="false"
+    (click)="onPageSelected(currentPage + 1)"
+    [disabled]="currentPage + 1 >= lastPage"
+  />
 </div>

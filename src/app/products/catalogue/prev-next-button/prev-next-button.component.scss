@@ -1,0 +1,19 @@
+.round-button-noborder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  border: none;
+  box-sizing: content-box;
+  background-color: white;
+}
+
+svg {
+  stroke: black;
+  stroke-width: 3;
+  overflow: visible;
+}
