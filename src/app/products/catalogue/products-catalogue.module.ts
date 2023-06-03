@@ -6,6 +6,7 @@ import { ProductCategoryTabsComponent } from './product-category-tabs/product-ca
 import { HeadingComponent } from 'src/app/shared/components/heading/heading.component';
 import { FacetedTabComponent } from './faceted-tab/faceted-tab.component';
 import { ProductKeywordFilterComponent } from './product-keyword-filter/product-keyword-filter.component';
+import { PageNavigatorComponent } from './page-navigator/page-navigator.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ProductKeywordFilterComponent } from './product-keyword-filter/product-
     ProductCategoryTabsComponent,
     FacetedTabComponent,
     ProductKeywordFilterComponent,
+    PageNavigatorComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -20,6 +22,7 @@ import { ProductKeywordFilterComponent } from './product-keyword-filter/product-
     ProductCategoryTabsComponent,
     HeadingComponent,
     ProductKeywordFilterComponent,
+    PageNavigatorComponent,
   ],
 })
 export class ProductsCatalogueModule {}

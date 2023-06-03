@@ -51,6 +51,8 @@ export class ProductsComponent {
     )
   );
 
+  pageSize = 5;
+
   emptyMap = new Map<string, number>();
 
   constructor(

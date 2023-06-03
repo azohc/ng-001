@@ -19,6 +19,12 @@
       [products]="(catalogueProducts$ | async) || []"
       class="products__catalogue"
     ></app-products-catalogue>
+    <app-page-navigator
+      [totalItems]="
+        (catalogueProducts$ | async)?.length || 0
+      "
+      [pageSize]="pageSize"
+    ></app-page-navigator>
   </div>
   <app-products-cart
     class="products__cart"
