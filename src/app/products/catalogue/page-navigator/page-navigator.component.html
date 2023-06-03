@@ -30,7 +30,7 @@
     <button
       class="page-navigator__button page-active default-cursor"
     >
-      {{ currentPage + 1 }}
+      {{ currentPage + 1 }}c
     </button>
     <ng-template [ngIf]="lastPage !== 0">
       <button
@@ -38,7 +38,7 @@
         *ngFor="let nextPage of nextPagesRange"
         (click)="onPageSelected(nextPage)"
       >
-        {{ nextPage + 1 }}
+        {{ nextPage + 1 }}x
       </button>
       <button
         class="page-navigator__button default-cursor no-border"
@@ -53,7 +53,7 @@
         *ngIf="currentPage + nrPrevNextPages + 1 < lastPage"
         (click)="onPageSelected(lastPage - 1)"
       >
-        {{ lastPage }}
+        {{ lastPage }} l
       </button>
     </ng-template>
   </div>

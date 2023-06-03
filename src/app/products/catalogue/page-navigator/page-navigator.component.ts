@@ -2,16 +2,22 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
 } from '@angular/core';
 import { range } from 'lodash-es';
+import { Subscription } from 'rxjs';
+import { CatalogueService } from 'src/app/core/services/catalogue.service';
 
 @Component({
   selector: 'app-page-navigator',
   templateUrl: './page-navigator.component.html',
   styleUrls: ['./page-navigator.component.scss'],
 })
-export class PageNavigatorComponent {
+export class PageNavigatorComponent
+  implements OnInit, OnDestroy
+{
   @Input()
   totalItems!: number;
 
@@ -22,11 +28,25 @@ export class PageNavigatorComponent {
   pageChange = new EventEmitter<number>();
 
   currentPage = 0;
+
+  nrPrevNextPages = 2;
+
+  subscription?: Subscription;
+
   get lastPage() {
     return Math.ceil(this.totalItems / this.pageSize);
   }
 
-  nrPrevNextPages = 2;
+  constructor(private catalogueService: CatalogueService) {}
+  ngOnInit(): void {
+    this.subscription =
+      this.catalogueService.currentPage$.subscribe(
+        (currentPage) => (this.currentPage = currentPage)
+      );
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 
   // TODO replace with observable ? could ditch lodash and just use RxJS
   get previousPagesRange() {

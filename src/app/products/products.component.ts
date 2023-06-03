@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { combineLatest, map } from 'rxjs';
+import { combineLatest, map, tap } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { CatalogueService } from '../core/services/catalogue.service';
 
@@ -36,6 +36,7 @@ export class ProductsComponent {
     this.categoryFilter$,
     this.keywordFilter$,
   ]).pipe(
+    tap(() => this.setCurrentPage(0)),
     map(([products, categoryFilter, keywordFilter]) =>
       products.filter((product) => {
         let condition = true;
@@ -64,7 +65,7 @@ export class ProductsComponent {
     )
   );
 
-  pageSize = 5;
+  pageSize = 4;
 
   emptyMap = new Map<string, number>();
 
