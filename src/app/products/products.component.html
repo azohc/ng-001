@@ -16,7 +16,9 @@
       </app-product-keyword-filter>
     </div>
     <app-products-catalogue
-      [products]="(catalogueProducts$ | async) || []"
+      [products]="
+        (paginatedCatalogueProducts$ | async) || []
+      "
       class="products__catalogue"
     ></app-products-catalogue>
     <app-page-navigator
@@ -24,6 +26,7 @@
         (catalogueProducts$ | async)?.length || 0
       "
       [pageSize]="pageSize"
+      (pageChange)="setCurrentPage($event)"
     ></app-page-navigator>
   </div>
   <app-products-cart

@@ -29,6 +29,7 @@ export class ProductsComponent {
 
   categoryFilter$ = this.catalogueService.categoryFilter$;
   keywordFilter$ = this.catalogueService.keywordFilter$;
+  currentPage$ = this.catalogueService.currentPage$;
 
   catalogueProducts$ = combineLatest([
     this.products$,
@@ -51,6 +52,18 @@ export class ProductsComponent {
     )
   );
 
+  paginatedCatalogueProducts$ = combineLatest([
+    this.catalogueProducts$,
+    this.currentPage$,
+  ]).pipe(
+    map(([filteredProducts, currentPage]) =>
+      filteredProducts.slice(
+        currentPage * this.pageSize,
+        (currentPage + 1) * this.pageSize
+      )
+    )
+  );
+
   pageSize = 5;
 
   emptyMap = new Map<string, number>();
@@ -66,5 +79,9 @@ export class ProductsComponent {
 
   setKeywordFilter(query: string) {
     this.catalogueService.setKeywordFilter(query);
+  }
+
+  setCurrentPage(pageNumber: number) {
+    this.catalogueService.setCurrentPage(pageNumber);
   }
 }

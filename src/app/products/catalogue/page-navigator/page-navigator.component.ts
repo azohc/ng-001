@@ -21,7 +21,6 @@ export class PageNavigatorComponent {
   @Output()
   pageChange = new EventEmitter<number>();
 
-  /// Local state
   currentPage = 0;
   get lastPage() {
     return Math.ceil(this.totalItems / this.pageSize);
@@ -49,7 +48,7 @@ export class PageNavigatorComponent {
   }
 
   onPageSelected(pageNumber: number) {
-    console.log('selected page ', pageNumber);
-    console.log('TODO implement');
+    this.pageChange.emit(pageNumber);
+    this.currentPage = pageNumber;
   }
 }
