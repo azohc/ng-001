@@ -11,8 +11,8 @@
 
 .page-active {
   font-weight: 900;
-  background-color: black;
-  color: white;
+  background-color: #d1d1d1;
+  color: black;
 }
 
 .default-cursor {
@@ -24,7 +24,7 @@
 }
 
 .page-navigator__button {
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -34,13 +34,24 @@
   height: 2rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  border: 2px black solid;
+  border: 2px #d1d1d1 solid;
+  color: #a0a0a0;
+
+  &:hover:not(.page-active) {
+    border-color: #a0a0a0;
+  }
+
+  &:active {
+    border-color: #a0a0a0;
+    background-color: #a0a0a0;
+    color: black;
+  }
 }
 
 .page-active {
-  font-weight: 900;
-  background-color: black;
-  color: white;
+  font-weight: 600;
+  background-color: #d1d1d1;
+  color: black;
 }
 
 .default-cursor {

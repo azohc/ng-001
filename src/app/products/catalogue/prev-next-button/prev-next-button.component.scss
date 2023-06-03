@@ -10,10 +10,18 @@
   border: none;
   box-sizing: content-box;
   background-color: white;
+
+  &:hover svg {
+    stroke: #c3c3c3;
+  }
+
+  &:active svg {
+    stroke: #a0a0a0;
+  }
 }
 
 svg {
-  stroke: black;
+  stroke: #d1d1d1;
   stroke-width: 3;
   overflow: visible;
 }
