@@ -31,8 +31,22 @@
   align-items: center;
   margin: 5px;
   padding: 5px;
-  height: 20px;
-  width: 20px;
-  border-radius: 20px;
+  height: 2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   border: 2px black solid;
+}
+
+.page-active {
+  font-weight: 900;
+  background-color: black;
+  color: white;
+}
+
+.default-cursor {
+  cursor: default;
+}
+
+.no-border {
+  border-color: transparent;
 }

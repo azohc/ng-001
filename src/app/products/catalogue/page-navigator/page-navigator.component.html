@@ -14,9 +14,8 @@
         1
       </button>
       <button
-        class="page-navigator__button"
-        v-if="currentPage - nrPrevNextPages > 1"
-        :classes="['default-cursor', 'no-border']"
+        class="page-navigator__button default-cursor no-border"
+        *ngIf="currentPage - nrPrevNextPages > 1"
       >
         ...
       </button>
@@ -29,8 +28,7 @@
       </button>
     </ng-template>
     <button
-      class="page-navigator__button"
-      :classes="['page-active']"
+      class="page-navigator__button page-active default-cursor"
     >
       {{ currentPage + 1 }}
     </button>
@@ -43,11 +41,10 @@
         {{ nextPage + 1 }}
       </button>
       <button
-        class="page-navigator__button"
+        class="page-navigator__button default-cursor no-border"
         *ngIf="
           currentPage + nrPrevNextPages + 1 < lastPage - 1
         "
-        :classes="['default-cursor', 'no-border']"
       >
         ...
       </button>
