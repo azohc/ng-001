@@ -20,39 +20,61 @@ export class HighlightDirective implements OnChanges {
   constructor(private elementRef: ElementRef) {}
 
   ngOnChanges(): void {
-    if (this.stringToHighlight) this.highlightText();
+    const deHighlightText = () => {
+      const text = this.elementRef.nativeElement.innerHTML;
+      if (text.includes(this.HIGHLIGHT_TAG_OPEN)) {
+        let dehighlightedText = text.replace(
+          this.HIGHLIGHT_TAG_OPEN,
+          ''
+        );
+        dehighlightedText = dehighlightedText.replace(
+          this.HIGHLIGHT_TAG_CLOSE,
+          ''
+        );
+        this.elementRef.nativeElement.innerHTML =
+          dehighlightedText;
+      }
+    };
+    if (this.stringToHighlight) {
+      deHighlightText();
+      this.highlightText();
+    } else {
+      deHighlightText();
+    }
   }
 
   private highlightText() {
-    const text = this.elementRef.nativeElement.innerHTML;
-
-    this.stringToHighlight = this.stringToHighlight.trim();
-
-    if (
-      !text
-        .toLowerCase()
-        .includes(this.stringToHighlight.toLowerCase())
-    ) {
-      this.elementRef.nativeElement.innerHTML =
-        text.replace(this.HIGHLIGHT_TAG_OPEN, '');
-      this.elementRef.nativeElement.innerHTML =
-        text.replace(this.HIGHLIGHT_TAG_CLOSE, '');
-      return;
+    const numChildren =
+      this.elementRef.nativeElement.children.length;
+    let text: string,
+      nestedText = false;
+    if (numChildren === 1) {
+      text = this.elementRef.nativeElement.children[0]
+        .innerText as string;
+      nestedText = true;
+    } else if (numChildren === 0) {
+      text = this.elementRef.nativeElement
+        .innerText as string;
+    } else {
+      console.warn(
+        'This directive should be used on leaf HTML elements or app-heading components'
+      );
+      text = this.elementRef.nativeElement.innerText;
+      nestedText = true;
     }
 
-    const start = text
-      .toLowerCase()
-      .indexOf(this.stringToHighlight.toLowerCase());
-    const end = start + this.stringToHighlight.length;
+    const regex = new RegExp(this.stringToHighlight, 'igm');
+    const highlightedText = text.replace(
+      regex,
+      (match) =>
+        `${this.HIGHLIGHT_TAG_OPEN}${match}${this.HIGHLIGHT_TAG_CLOSE}`
+    );
 
-    const substring = text.substring(start, end);
-    const split = text.split(substring);
-    this.elementRef.nativeElement.innerHTML = [
-      split[0],
-      this.HIGHLIGHT_TAG_OPEN,
-      substring,
-      this.HIGHLIGHT_TAG_CLOSE,
-      split[1],
-    ].join('');
+    let targetElement = this.elementRef.nativeElement;
+
+    while (nestedText && targetElement.children.length) {
+      targetElement = targetElement.children[0];
+    }
+    targetElement.innerHTML = highlightedText;
   }
 }
