@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { combineLatest, map, tap } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { CatalogueService } from '../core/services/catalogue.service';
+import { APP_SETTINGS } from '../app.module';
+import { AppSettings } from '../app.settings';
 
 @Component({
   selector: 'app-products',
@@ -65,11 +67,12 @@ export class ProductsComponent {
     )
   );
 
-  pageSize = 4;
+  pageSize = this.settings.pageSize;
 
   emptyMap = new Map<string, number>();
 
   constructor(
+    @Inject(APP_SETTINGS) private settings: AppSettings,
     private productsService: ProductService,
     private catalogueService: CatalogueService
   ) {}

@@ -8,14 +8,14 @@
     <ng-template [ngIf]="lastPage !== 0">
       <button
         class="page-navigator__button"
-        *ngIf="currentPage - nrPrevNextPages > 0"
+        *ngIf="currentPage - numPagesAdjacentToCurrent > 0"
         (click)="onPageSelected(0)"
       >
         1
       </button>
       <button
         class="page-navigator__button default-cursor no-border"
-        *ngIf="currentPage - nrPrevNextPages > 1"
+        *ngIf="currentPage - numPagesAdjacentToCurrent > 1"
       >
         ...
       </button>
@@ -43,14 +43,18 @@
       <button
         class="page-navigator__button default-cursor no-border"
         *ngIf="
-          currentPage + nrPrevNextPages + 1 < lastPage - 1
+          currentPage + numPagesAdjacentToCurrent + 1 <
+          lastPage - 1
         "
       >
         ...
       </button>
       <button
         class="page-navigator__button"
-        *ngIf="currentPage + nrPrevNextPages + 1 < lastPage"
+        *ngIf="
+          currentPage + numPagesAdjacentToCurrent + 1 <
+          lastPage
+        "
         (click)="onPageSelected(lastPage - 1)"
       >
         {{ lastPage }}
