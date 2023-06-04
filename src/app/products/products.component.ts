@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { combineLatest, map, tap } from 'rxjs';
-import { ProductService } from 'src/app/core/services/product.service';
 import { CatalogueService } from '../core/services/catalogue.service';
 import { APP_SETTINGS } from '../app.module';
 import { AppSettings } from '../app.settings';
+import { ProductService } from '../core/services/product-data.service';
 
 @Component({
   selector: 'app-products',
