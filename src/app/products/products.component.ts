@@ -11,7 +11,7 @@ import { ProductDataService } from '../core/services/product-data.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
-  products$ = this.productsService.products$;
+  products$ = this.productDataService.products$;
 
   productCategories$ = this.products$.pipe(
     map((products) => {
@@ -73,7 +73,7 @@ export class ProductsComponent {
 
   constructor(
     @Inject(APP_SETTINGS) private settings: AppSettings,
-    private productsService: ProductDataService,
+    private productDataService: ProductDataService,
     private catalogueService: CatalogueService
   ) {}
 
