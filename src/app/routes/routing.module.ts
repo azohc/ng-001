@@ -6,8 +6,14 @@ import { ShopComponent } from './shop/shop.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsCatalogueModule } from '../products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from '../products/cart/products-cart.module';
+import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
 
 const routes: Routes = [
+  {
+    path: 'success',
+    // TODO deny access that isn't from /checkout somehow?
+    component: CheckoutSuccessComponent,
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -30,6 +36,7 @@ const routes: Routes = [
     LayoutComponent,
     ShopComponent,
     CheckoutComponent,
+    CheckoutSuccessComponent,
   ],
   imports: [
     CommonModule,
