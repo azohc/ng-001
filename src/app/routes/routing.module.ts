@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { ShopComponent } from './pages/shop/shop.component';
-import { LayoutComponent } from './pages/layout/layout.component';
-import { ProductsCartModule } from './products/cart/products-cart.module';
-import { ProductsCatalogueModule } from './products/catalogue/products-catalogue.module';
 import { CommonModule } from '@angular/common';
+import { LayoutComponent } from './layout/layout.component';
+import { ShopComponent } from './shop/shop.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductsCatalogueModule } from '../products/catalogue/products-catalogue.module';
+import { ProductsCartModule } from '../products/cart/products-cart.module';
 
 const routes: Routes = [
   {
@@ -39,4 +39,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class RoutingModule {}

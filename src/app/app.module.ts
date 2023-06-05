@@ -1,8 +1,8 @@
 import { InjectionToken, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppSettings, appSettings } from './app.settings';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
+import { RoutingModule } from './routes/routing.module';
 
 export const APP_SETTINGS = new InjectionToken<AppSettings>(
   'app.settings'
@@ -10,7 +10,7 @@ export const APP_SETTINGS = new InjectionToken<AppSettings>(
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [AppRoutingModule, BrowserModule],
+  imports: [BrowserModule, RoutingModule],
   providers: [
     { provide: APP_SETTINGS, useValue: appSettings },
   ],
