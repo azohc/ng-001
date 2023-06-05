@@ -7,6 +7,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsCatalogueModule } from '../products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from '../products/cart/products-cart.module';
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -23,6 +25,7 @@ const routes: Routes = [
         component: ShopComponent,
       },
       {
+        // TODO deny access if cart is empty?
         path: 'checkout',
         component: CheckoutComponent,
       },
@@ -43,6 +46,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ProductsCatalogueModule,
     ProductsCartModule,
+    SharedModule,
+    ReactiveFormsModule,
   ],
   exports: [RouterModule],
 })

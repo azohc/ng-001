@@ -13,6 +13,10 @@ import { HighlightDirective } from './directives/highlight.directive';
     HighlightDirective,
   ],
   imports: [CommonModule],
-  exports: [HeadingComponent, ProductCardComponent],
+  exports: [
+    HeadingComponent,
+    ProductCardComponent,
+    ButtonComponent,
+  ],
 })
 export class SharedModule {}

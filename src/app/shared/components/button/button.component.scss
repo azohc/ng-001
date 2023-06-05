@@ -8,13 +8,15 @@ button.btn {
   transition: transform 300ms;
   transition: border-color 500ms;
 
-  &:hover {
-    transform: scale(1.02);
-    border-color: #a0a0a0;
-  }
+  &:not(:disabled) {
+    &:hover {
+      transform: scale(1.02);
+      border-color: #a0a0a0;
+    }
 
-  &:active {
-    background-color: #c3c3c3;
-    border-color: #c3c3c3;
+    &:active {
+      background-color: #c3c3c3;
+      border-color: #c3c3c3;
+    }
   }
 }

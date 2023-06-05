@@ -1,1 +1,74 @@
-<p>checkout works!</p>
+<main class="checkout__container">
+  <app-heading>Checkout</app-heading>
+
+  <em>Please enter your personal details</em>
+
+  <form
+    [formGroup]="checkoutForm"
+    (ngSubmit)="onSubmit()"
+    class="checkout__form"
+  >
+    <input
+      id="first-name"
+      type="text"
+      formControlName="firstName"
+      placeholder="First name"
+    />
+
+    <input
+      id="last-name"
+      type="text"
+      formControlName="lastName"
+      placeholder="Last name"
+    />
+
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="Email"
+    />
+
+    <select id="country" formControlName="country">
+      <option value="" disabled selected>Country</option>
+      <!-- TODO add array of supported countries or sth -->
+      <option value="usa">USA</option>
+    </select>
+
+    <input
+      id="address"
+      type="text"
+      formControlName="address"
+      placeholder="Address"
+    />
+
+    <input
+      id="zipCode"
+      type="input"
+      formControlName="zipCode"
+      placeholder="Zip Code"
+    />
+
+    <input
+      id="state"
+      type="text"
+      formControlName="state"
+      placeholder="State"
+    />
+
+    <div class="checkout__tnc">
+      <input id="termsAndConditions" type="checkbox" />
+      <label for="termsAndConditions"
+        >I agree to this site's terms of use</label
+      >
+    </div>
+
+    <app-button
+      type="submit"
+      [disabled]="!checkoutForm.valid"
+      class="checkout__submit"
+    >
+      Submit
+    </app-button>
+  </form>
+</main>
