@@ -39,4 +39,15 @@
     [total]="(totalCartSum$ | async) || 0"
     class="products-cart__total"
   ></app-product-cart-total>
+
+  <a
+    routerLink="checkout"
+    *ngIf="atShopRoute; else atCheckoutRoute"
+  >
+    Go To Checkout
+  </a>
+
+  <ng-template #atCheckoutRoute>
+    <a routerLink="shop">Go To Shop</a>
+  </ng-template>
 </section>

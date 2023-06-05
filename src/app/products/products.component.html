@@ -1,5 +1,5 @@
 <div class="products__container">
-  <div class="products__catalogue-container">
+  <!-- <div class="products__catalogue-container">
     <app-heading>Products catalogue</app-heading>
     <div class="products__catalogue-controls">
       <app-product-category-tabs
@@ -8,7 +8,6 @@
         "
         (tabClicked)="setCategoryFilter($event)"
       ></app-product-category-tabs>
-      <!-- TODO use [(queryChanged)] to pass an initial value for query i.e. to load search from URL params-->
       <app-product-keyword-filter
         [selectedCategory]="(categoryFilter$ | async) || ''"
         (queryChanged)="setKeywordFilter($event)"
@@ -28,8 +27,6 @@
       [pageSize]="pageSize"
       (pageChange)="setCurrentPage($event)"
     ></app-page-navigator>
-  </div>
-  <app-products-cart
-    class="products__cart"
-  ></app-products-cart>
+  </div> -->
+  <!-- <app-products-cart></app-products-cart> -->
 </div>

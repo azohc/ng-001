@@ -1,18 +1,27 @@
 import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './products/products.component';
+import { AppSettings, appSettings } from './app.settings';
+import { AppRoutingModule } from './app-routing.module';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { ShopComponent } from './pages/shop/shop.component';
 import { ProductsCatalogueModule } from './products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from './products/cart/products-cart.module';
-import { AppSettings, appSettings } from './app.settings';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 export const APP_SETTINGS = new InjectionToken<AppSettings>(
   'app.settings'
 );
 
 @NgModule({
-  declarations: [AppComponent, ProductsComponent],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    ShopComponent,
+    CheckoutComponent,
+  ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     ProductsCatalogueModule,
     ProductsCartModule,

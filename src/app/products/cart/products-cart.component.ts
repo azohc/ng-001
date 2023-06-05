@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { Product } from 'src/app/core/models/product.model';
 import { CartService } from 'src/app/core/services/cart.service';
@@ -32,5 +33,12 @@ export class ProductsCartComponent {
     })
   );
 
-  constructor(private cartService: CartService) {}
+  get atShopRoute() {
+    return this.router.url === '/shop';
+  }
+
+  constructor(
+    private router: Router,
+    private cartService: CartService
+  ) {}
 }

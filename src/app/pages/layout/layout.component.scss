@@ -1,0 +1,10 @@
+.router__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+  .router__container {
+    flex-direction: column;
+  }
+}
