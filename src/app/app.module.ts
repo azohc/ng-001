@@ -5,7 +5,11 @@ import { ProductsComponent } from './products/products.component';
 import { ProductsCatalogueModule } from './products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from './products/cart/products-cart.module';
 import { AppSettings, appSettings } from './app.settings';
-import { ProductService } from './core/services/product-data.service';
+import {
+  FrenchProductDataService,
+  BaseProductDataService,
+  ProductDataService,
+} from './core/services/product-data.service';
 
 export const APP_SETTINGS = new InjectionToken<AppSettings>(
   'app.settings'
@@ -13,12 +17,13 @@ export const APP_SETTINGS = new InjectionToken<AppSettings>(
 
 export function productDataServiceFactory(
   settings: AppSettings
-): ProductService {
-  // TODO fix this and test it
+): BaseProductDataService {
+  // TODO remove?
+  // redundant factory, ProductDataService already handles language
   if (settings.language === 'fr') {
-    // return new FrenchProductService(appSettings);
+    return new FrenchProductDataService(appSettings);
   }
-  return new ProductService(appSettings);
+  return new ProductDataService(appSettings);
 }
 
 @NgModule({
@@ -31,7 +36,7 @@ export function productDataServiceFactory(
   providers: [
     { provide: APP_SETTINGS, useValue: appSettings },
     {
-      provide: ProductService,
+      provide: ProductDataService,
       useFactory: productDataServiceFactory,
       deps: [APP_SETTINGS],
     },

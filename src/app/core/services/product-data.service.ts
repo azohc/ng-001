@@ -5,12 +5,15 @@ import { Product } from '../models/product.model';
 import { APP_SETTINGS } from 'src/app/app.module';
 import { AppSettings } from 'src/app/app.settings';
 
-export interface ProductDataService {
-  products$: Observable<Product[]>;
+@Injectable()
+export abstract class BaseProductDataService {
+  abstract products$: Observable<Product[]>;
 }
 
 @Injectable()
-export class ProductService implements ProductDataService {
+export class ProductDataService
+  implements BaseProductDataService
+{
   productsURL = this.settings.dataSourceURL.replace(
     '$LANG$',
     this.settings.language
@@ -27,8 +30,8 @@ export class ProductService implements ProductDataService {
 }
 
 @Injectable()
-export class FrenchProductService
-  implements ProductDataService
+export class FrenchProductDataService
+  implements BaseProductDataService
 {
   productsURL = this.settings.dataSourceURL.replace(
     '$LANG$',

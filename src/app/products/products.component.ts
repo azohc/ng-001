@@ -3,7 +3,7 @@ import { combineLatest, map, tap } from 'rxjs';
 import { CatalogueService } from '../core/services/catalogue.service';
 import { APP_SETTINGS } from '../app.module';
 import { AppSettings } from '../app.settings';
-import { ProductService } from '../core/services/product-data.service';
+import { ProductDataService } from '../core/services/product-data.service';
 
 @Component({
   selector: 'app-products',
@@ -73,7 +73,7 @@ export class ProductsComponent {
 
   constructor(
     @Inject(APP_SETTINGS) private settings: AppSettings,
-    private productsService: ProductService,
+    private productsService: ProductDataService,
     private catalogueService: CatalogueService
   ) {}
 
