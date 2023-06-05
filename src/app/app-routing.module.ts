@@ -5,7 +5,6 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { ProductsCartModule } from './products/cart/products-cart.module';
 import { ProductsCatalogueModule } from './products/catalogue/products-catalogue.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
