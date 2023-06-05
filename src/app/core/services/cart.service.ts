@@ -18,4 +18,8 @@ export class CartService {
       product,
     ]);
   }
+
+  clearCart() {
+    this.cartItemsSubject.next([]);
+  }
 }

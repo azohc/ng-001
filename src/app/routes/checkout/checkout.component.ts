@@ -4,6 +4,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -19,10 +21,20 @@ export class CheckoutComponent {
     address: new FormControl('', Validators.required),
     zipCode: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
+    termsAndConditions: new FormControl(
+      false,
+      Validators.requiredTrue
+    ),
   });
 
   onSubmit() {
-    // TODO reset the cart and redirect to success
     console.warn(this.checkoutForm.value);
+    this.router.navigateByUrl('/success');
+    this.cartService.clearCart();
   }
+
+  constructor(
+    private router: Router,
+    private cartService: CartService
+  ) {}
 }
