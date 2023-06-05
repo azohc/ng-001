@@ -5,7 +5,7 @@ import { Product } from '../models/product.model';
 import { APP_SETTINGS } from 'src/app/app.module';
 import { AppSettings } from 'src/app/app.settings';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ProductDataService {
   productsURL = this.settings.dataSourceURL.replace(
     '$LANG$',
