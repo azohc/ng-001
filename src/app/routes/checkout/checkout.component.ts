@@ -13,6 +13,8 @@ import { CartService } from 'src/app/core/services/cart.service';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent {
+  //  TODO  If users select USA (or any other specific country of your choice) in the country selectbox, the “State” input field will NOT be required. Otherwise it will be required.
+
   checkoutForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
