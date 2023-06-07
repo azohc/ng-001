@@ -9,20 +9,6 @@
   display: flex;
 }
 
-.page-active {
-  font-weight: 900;
-  background-color: #d1d1d1;
-  color: black;
-}
-
-.default-cursor {
-  cursor: default;
-}
-
-.no-border {
-  border-color: transparent;
-}
-
 .page-navigator__button {
   font-weight: 400;
   cursor: pointer;
@@ -36,6 +22,7 @@
   border-radius: 50%;
   border: 2px #d1d1d1 solid;
   color: #a0a0a0;
+  transition: border-color 300ms;
 
   &:not(.no-border) {
     &:hover:not(.page-active) {
