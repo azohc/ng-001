@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import {
   FormControl,
