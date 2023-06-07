@@ -3,12 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
 import { ShopComponent } from './shop/shop.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsCatalogueModule } from '../products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from '../products/cart/products-cart.module';
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -27,7 +24,10 @@ const routes: Routes = [
       {
         // TODO deny access if cart is empty?
         path: 'checkout',
-        component: CheckoutComponent,
+        loadComponent: () =>
+          import('./checkout/checkout.component').then(
+            (module) => module.CheckoutComponent
+          ),
       },
       { path: '**', redirectTo: 'shop' },
     ],
@@ -38,7 +38,6 @@ const routes: Routes = [
   declarations: [
     LayoutComponent,
     ShopComponent,
-    CheckoutComponent,
     CheckoutSuccessComponent,
   ],
   imports: [
@@ -46,8 +45,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ProductsCatalogueModule,
     ProductsCartModule,
-    SharedModule,
-    ReactiveFormsModule,
   ],
   exports: [RouterModule],
 })
