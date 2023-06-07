@@ -6,12 +6,14 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductsCatalogueModule } from '../products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from '../products/cart/products-cart.module';
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
+import { checkoutSuccessGuard } from './checkout-success/checkout-succes.guard';
+import { checkoutGuard } from './checkout/checkout.guard';
 
 const routes: Routes = [
   {
     path: 'success',
-    // TODO deny access that isn't from /checkout somehow?
     component: CheckoutSuccessComponent,
+    canActivate: [checkoutSuccessGuard],
   },
   {
     path: '',
@@ -22,8 +24,8 @@ const routes: Routes = [
         component: ShopComponent,
       },
       {
-        // TODO deny access if cart is empty?
         path: 'checkout',
+        canActivate: [checkoutGuard],
         loadComponent: () =>
           import('./checkout/checkout.component').then(
             (module) => module.CheckoutComponent

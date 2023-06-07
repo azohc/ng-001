@@ -58,7 +58,7 @@ export class CheckoutComponent
   onSubmit() {
     console.warn(this.checkoutForm.value);
     this.router.navigateByUrl('/success');
-    this.cartService.clearCart();
+    this.cartService.checkout();
   }
 
   constructor(
