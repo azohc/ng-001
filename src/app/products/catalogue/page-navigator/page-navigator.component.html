@@ -21,7 +21,7 @@
       </button>
       <button
         class="page-navigator__button"
-        *ngFor="let prevPage of previousPagesRange"
+        *ngFor="let prevPage of previousPagesRange | async"
         (click)="onPageSelected(prevPage)"
       >
         {{ prevPage + 1 }}
@@ -35,7 +35,7 @@
     <ng-template [ngIf]="lastPage !== 0">
       <button
         class="page-navigator__button"
-        *ngFor="let nextPage of nextPagesRange"
+        *ngFor="let nextPage of nextPagesRange | async"
         (click)="onPageSelected(nextPage)"
       >
         {{ nextPage + 1 }}

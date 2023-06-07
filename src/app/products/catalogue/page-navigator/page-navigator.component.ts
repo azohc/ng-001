@@ -7,8 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { range } from 'lodash-es';
-import { Subscription } from 'rxjs';
+import { Subscription, range, toArray } from 'rxjs';
 import { APP_SETTINGS } from 'src/app/app.module';
 import { AppSettings } from 'src/app/app.settings';
 import { CatalogueService } from 'src/app/core/services/catalogue.service';
@@ -55,14 +54,14 @@ export class PageNavigatorComponent
     this.subscription?.unsubscribe();
   }
 
-  // TODO replace with observable ? could ditch lodash and just use RxJS
   get previousPagesRange() {
     const start = Math.max(
       0,
       this.currentPage - this.numPagesAdjacentToCurrent
     );
     const end = this.currentPage;
-    return range(start, end);
+    const count = end - start;
+    return range(start, count).pipe(toArray());
   }
 
   get nextPagesRange() {
@@ -71,7 +70,8 @@ export class PageNavigatorComponent
       this.lastPage,
       this.currentPage + this.numPagesAdjacentToCurrent + 1
     );
-    return range(start, end);
+    const count = end - start;
+    return range(start, count).pipe(toArray());
   }
 
   onPageSelected(pageNumber: number) {
