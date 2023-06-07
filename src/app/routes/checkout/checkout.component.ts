@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,18 +13,29 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @Component({
   standalone: true,
-  imports: [SharedModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
 })
-export class CheckoutComponent {
-  //  TODO  If users select USA (or any other specific country of your choice) in the country selectbox, the “State” input field will NOT be required. Otherwise it will be required.
+export class CheckoutComponent
+  implements OnInit, OnDestroy
+{
+  COUNTRY_USA = 'USA';
+  COUNTRY_SPAIN = 'Spain';
+  countries = [this.COUNTRY_USA, this.COUNTRY_SPAIN];
+
+  sub?: Subscription;
 
   checkoutForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -33,6 +51,12 @@ export class CheckoutComponent {
     ),
   });
 
+  get stateRequired() {
+    const country =
+      this.checkoutForm.controls.country.value;
+    return country === this.COUNTRY_USA;
+  }
+
   onSubmit() {
     console.warn(this.checkoutForm.value);
     this.router.navigateByUrl('/success');
@@ -43,4 +67,22 @@ export class CheckoutComponent {
     private router: Router,
     private cartService: CartService
   ) {}
+
+  ngOnInit(): void {
+    this.sub =
+      this.checkoutForm.controls.country.valueChanges.subscribe(
+        (country) => {
+          const stateFC = this.checkoutForm.controls.state;
+          stateFC.clearValidators();
+          if (country === this.COUNTRY_USA) {
+            stateFC.addValidators(Validators.required);
+          }
+          stateFC.updateValueAndValidity();
+        }
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  }
 }

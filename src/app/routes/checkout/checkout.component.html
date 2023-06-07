@@ -9,6 +9,7 @@
     class="checkout__form"
   >
     <input
+      class="checkout__required-input"
       id="first-name"
       type="text"
       formControlName="firstName"
@@ -16,6 +17,7 @@
     />
 
     <input
+      class="checkout__required-input"
       id="last-name"
       type="text"
       formControlName="lastName"
@@ -23,16 +25,25 @@
     />
 
     <input
+      class="checkout__required-input"
       id="email"
       type="email"
       formControlName="email"
       placeholder="Email"
     />
 
-    <select id="country" formControlName="country">
+    <select
+      id="country"
+      formControlName="country"
+      class="checkout__required-input"
+    >
       <option value="" disabled selected>Country</option>
-      <!-- TODO add array of supported countries or sth -->
-      <option value="usa">USA</option>
+      <option
+        *ngFor="let country of countries"
+        [value]="country"
+      >
+        {{ country }}
+      </option>
     </select>
 
     <input
@@ -40,6 +51,7 @@
       type="text"
       formControlName="address"
       placeholder="Address"
+      class="checkout__required-input"
     />
 
     <input
@@ -47,6 +59,7 @@
       type="input"
       formControlName="zipCode"
       placeholder="Zip Code"
+      class="checkout__required-input"
     />
 
     <input
@@ -54,6 +67,7 @@
       type="text"
       formControlName="state"
       placeholder="State"
+      [class.checkout__required-input]="stateRequired"
     />
 
     <div class="checkout__tnc">

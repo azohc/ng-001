@@ -39,3 +39,9 @@ form.checkout__form {
     padding: 4px 8px;
   }
 }
+
+.checkout__required-input {
+  &.ng-touched.ng-invalid {
+    border-color: red;
+  }
+}
