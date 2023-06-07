@@ -9,6 +9,7 @@ export class CartService {
   private cartItemsSubject = new BehaviorSubject<Product[]>(
     []
   );
+  // what are the ways of making isEmpty into a non-observable member of CartService? is there a concise way? TODO review
   isEmpty = true;
   checkedOut = false;
 

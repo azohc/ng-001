@@ -9,7 +9,6 @@ import { CatalogueService } from 'src/app/core/services/catalogue.service';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnDestroy {
-  // TODO NG UPDATE to use required
   @Input()
   product!: Product;
 
