@@ -42,6 +42,7 @@
 
   <ng-template [ngIf]="(cartItems$ | async)?.length">
     <a
+      class="cta"
       routerLink="checkout"
       *ngIf="atShopRoute; else atCheckoutRoute"
     >
@@ -49,7 +50,7 @@
     </a>
 
     <ng-template #atCheckoutRoute>
-      <a routerLink="shop">Go To Shop</a>
+      <a routerLink="shop" class="secondary">Go To Shop</a>
     </ng-template>
   </ng-template>
 </section>

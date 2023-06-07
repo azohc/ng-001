@@ -14,3 +14,33 @@ body {
   margin: 2rem;
   border: 1px blueviolet solid;
 }
+
+a {
+  font-weight: 400;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  width: fit-content;
+  color: #4b4b4b;
+
+  border: 1px #d1d1d1 solid;
+
+  &:hover:not(.cta) {
+    font-weight: 500;
+    border-color: #4b4b4b;
+    color: black;
+  }
+
+  &:active:not(.cta) {
+    border-color: black;
+  }
+
+  &.cta {
+    color: white;
+    background-color: #4db2f6;
+
+    &:hover {
+      background-color: #2ea8fa;
+    }
+  }
+}
