@@ -26,7 +26,7 @@ export class ShopComponent {
       state === 'loaded'
         ? concat(
             of('showCompleted'),
-            timer(333 + Math.random() * 666).pipe(
+            timer(111 + Math.random() * 666).pipe(
               map(() => 'hide')
             )
           )
