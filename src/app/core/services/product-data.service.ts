@@ -3,6 +3,7 @@ import {
   BehaviorSubject,
   Observable,
   map,
+  of,
   tap,
 } from 'rxjs';
 import { Product } from '../models/product.model';
@@ -10,21 +11,31 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ProductDataService {
-  private isLoadingSubject = new BehaviorSubject(false);
-  isLoading$ = this.isLoadingSubject.asObservable();
+  private loadingStateSubject = new BehaviorSubject<
+    'init' | 'loading' | 'loaded'
+  >('init');
+  loadingState$ = this.loadingStateSubject.asObservable();
 
-  fetchProducts(): Observable<Product[]> {
-    this.isLoadingSubject.next(true);
-    return this.http
+  private productsSubject = new BehaviorSubject<Product[]>(
+    []
+  );
+  products$ = this.productsSubject.asObservable();
+
+  fetchProducts() {
+    this.loadingStateSubject.next('loading');
+    this.http
       .get('https://fakestoreapi.com/products')
       .pipe(
-        map((response) => response as unknown as Product[]),
+        map((response) =>
+          this.productsSubject.next(
+            response as unknown as Product[]
+          )
+        ),
         tap(() => {
-          // TODO review why this never gets called
-          this.isLoadingSubject.next(false);
-          console.log('loaded');
+          this.loadingStateSubject.next('loaded');
         })
-      );
+      )
+      .subscribe();
   }
 
   constructor(private http: HttpClient) {}

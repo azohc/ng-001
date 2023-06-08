@@ -1,8 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { map, combineLatest, tap, of } from 'rxjs';
+import { map, combineLatest, tap } from 'rxjs';
 import { APP_SETTINGS } from 'src/app/app.module';
 import { AppSettings } from 'src/app/app.settings';
-import { Product } from 'src/app/core/models/product.model';
 import { CatalogueService } from 'src/app/core/services/catalogue.service';
 import { ProductDataService } from 'src/app/core/services/product-data.service';
 
@@ -12,8 +11,8 @@ import { ProductDataService } from 'src/app/core/services/product-data.service';
   styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent {
-  productsLoading$ = this.productDataService.isLoading$;
-  products$ = of<Product[]>([]);
+  loadingState$ = this.productDataService.loadingState$;
+  products$ = this.productDataService.products$;
 
   productCategories$ = this.products$.pipe(
     map((products) => {
@@ -92,7 +91,6 @@ export class ShopComponent {
   }
 
   fetchProducts() {
-    this.products$ =
-      this.productDataService.fetchProducts();
+    this.productDataService.fetchProducts();
   }
 }

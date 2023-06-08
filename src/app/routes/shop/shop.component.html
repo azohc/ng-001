@@ -2,45 +2,38 @@
   <app-heading>Products catalogue</app-heading>
   <button
     (click)="fetchProducts()"
-    [disabled]="productsLoading$ | async"
+    [disabled]="(loadingState$ | async) === 'loading'"
   >
-    fetch
+    FETCH
   </button>
-  <ng-template
-    *ngIf="
-      (productsLoading$ | async) === false;
-      else loading
-    "
+  <span *ngIf="(loadingState$ | async) === 'loading'"
+    >LOADING
+    {{ (products$ | async)?.length }}
+  </span>
+  <div
+    *ngIf="(loadingState$ | async) === 'loaded'"
+    class="shop__catalogue-controls"
   >
-    <div class="shop__catalogue-controls">
-      <app-product-category-tabs
-        [productCategories]="
-          (productCategories$ | async) || emptyMap
-        "
-        (tabClicked)="setCategoryFilter($event)"
-      ></app-product-category-tabs>
-      <!-- TODO use [(queryChanged)] to pass an initial value for query i.e. to load search from URL params-->
-      <app-product-keyword-filter
-        [selectedCategory]="(categoryFilter$ | async) || ''"
-        (queryChanged)="setKeywordFilter($event)"
-      >
-      </app-product-keyword-filter>
-    </div>
-    <app-products-catalogue
-      [products]="
-        (paginatedCatalogueProducts$ | async) || []
+    <app-product-category-tabs
+      [productCategories]="
+        (productCategories$ | async) || emptyMap
       "
-      class="shop__catalogue"
-    ></app-products-catalogue>
-    <app-page-navigator
-      [totalItems]="
-        (catalogueProducts$ | async)?.length || 0
-      "
-      [pageSize]="pageSize"
-      (pageChange)="setCurrentPage($event)"
-    ></app-page-navigator>
-  </ng-template>
-  <ng-template #loading>
-    <span>LOADING . . .</span>
-  </ng-template>
+      (tabClicked)="setCategoryFilter($event)"
+    ></app-product-category-tabs>
+    <!-- TODO use [(queryChanged)] to pass an initial value for query i.e. to load search from URL params-->
+    <app-product-keyword-filter
+      [selectedCategory]="(categoryFilter$ | async) || ''"
+      (queryChanged)="setKeywordFilter($event)"
+    >
+    </app-product-keyword-filter>
+  </div>
+  <app-products-catalogue
+    [products]="(paginatedCatalogueProducts$ | async) || []"
+    class="shop__catalogue"
+  ></app-products-catalogue>
+  <app-page-navigator
+    [totalItems]="(catalogueProducts$ | async)?.length || 0"
+    [pageSize]="pageSize"
+    (pageChange)="setCurrentPage($event)"
+  ></app-page-navigator>
 </div>
