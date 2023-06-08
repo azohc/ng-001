@@ -1,5 +1,13 @@
 import { Component, Inject } from '@angular/core';
-import { map, combineLatest, tap } from 'rxjs';
+import {
+  map,
+  combineLatest,
+  tap,
+  of,
+  timer,
+  concat,
+  concatMap,
+} from 'rxjs';
 import { APP_SETTINGS } from 'src/app/app.module';
 import { AppSettings } from 'src/app/app.settings';
 import { CatalogueService } from 'src/app/core/services/catalogue.service';
@@ -12,6 +20,20 @@ import { ProductDataService } from 'src/app/core/services/product-data.service';
 })
 export class ShopComponent {
   loadingState$ = this.productDataService.loadingState$;
+  // TODO display SKELETON CARDS with ANIMATED SHIMMER
+  // THEN STOP ANIMATING SHIMMER
+  // AND FADE OUT
+  // AND FADE the actual cards IN
+  loadingProgress$ = this.loadingState$.pipe(
+    concatMap((state) =>
+      state === 'loaded'
+        ? concat(
+            of('showCompleted'),
+            timer(3000).pipe(map(() => 'hide'))
+          )
+        : of('showSpinner')
+    )
+  );
   products$ = this.productDataService.products$;
 
   productCategories$ = this.products$.pipe(

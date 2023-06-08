@@ -1,17 +1,22 @@
 <div class="shop__container">
   <app-heading>Products catalogue</app-heading>
-  <button
-    (click)="fetchProducts()"
-    [disabled]="(loadingState$ | async) === 'loading'"
+  <div>
+    loadingState = {{ loadingState$ | async }}
+    <br />
+    loadingProgress = {{ loadingProgress$ | async }}
+  </div>
+
+  <span
+    *ngIf="(loadingProgress$ | async) !== 'hide'"
+    class="shop__loading"
+    [class.shop__loading-completed]="
+      (loadingProgress$ | async) === 'showCompleted'
+    "
   >
-    FETCH
-  </button>
-  <span *ngIf="(loadingState$ | async) === 'loading'"
-    >LOADING
-    {{ (products$ | async)?.length }}
+    SPINNER TODO
   </span>
   <div
-    *ngIf="(loadingState$ | async) === 'loaded'"
+    *ngIf="(loadingProgress$ | async) === 'hide'"
     class="shop__catalogue-controls"
   >
     <app-product-category-tabs
@@ -26,14 +31,18 @@
       (queryChanged)="setKeywordFilter($event)"
     >
     </app-product-keyword-filter>
+    <app-products-catalogue
+      [products]="
+        (paginatedCatalogueProducts$ | async) || []
+      "
+      class="shop__catalogue"
+    ></app-products-catalogue>
+    <app-page-navigator
+      [totalItems]="
+        (catalogueProducts$ | async)?.length || 0
+      "
+      [pageSize]="pageSize"
+      (pageChange)="setCurrentPage($event)"
+    ></app-page-navigator>
   </div>
-  <app-products-catalogue
-    [products]="(paginatedCatalogueProducts$ | async) || []"
-    class="shop__catalogue"
-  ></app-products-catalogue>
-  <app-page-navigator
-    [totalItems]="(catalogueProducts$ | async)?.length || 0"
-    [pageSize]="pageSize"
-    (pageChange)="setCurrentPage($event)"
-  ></app-page-navigator>
 </div>

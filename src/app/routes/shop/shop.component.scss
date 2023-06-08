@@ -19,3 +19,16 @@
     align-items: center;
   }
 }
+
+.shop__loading {
+  // TODO display shimmering cards
+}
+
+.shop__loading-completed {
+  &::after() {
+    content: "COMPLETE";
+    height: 500px;
+    width: 500px;
+    position: absolute;
+  }
+}
