@@ -61,10 +61,12 @@ export class CheckoutComponent
   }
 
   onSubmit() {
-    this.http.post(
-      'localhost:4040/api/todo',
-      this.checkoutForm.value
-    );
+    this.http
+      .post(
+        'localhost:4040/api/todo',
+        this.checkoutForm.value
+      )
+      .subscribe();
     this.router.navigateByUrl('/success');
     this.cartService.checkOut();
   }
