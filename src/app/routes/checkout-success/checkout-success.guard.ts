@@ -7,7 +7,6 @@ export const checkoutSuccessGuard: CanActivateFn = () => {
   const cartService = inject(CartService);
   const router = inject(Router);
   return cartService.checkedOut$.pipe(
-    tap((checkedOut) => console.log('GUARD', checkedOut)),
     map(
       (checkedOut) => checkedOut || router.parseUrl('/shop')
     )
