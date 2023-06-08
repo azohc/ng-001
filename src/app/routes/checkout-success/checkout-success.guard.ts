@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 
 export const checkoutSuccessGuard: CanActivateFn = () => {
