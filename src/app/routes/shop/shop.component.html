@@ -1,20 +1,11 @@
 <div class="shop__container">
   <app-heading>Products catalogue</app-heading>
-  <div>
-    loadingState = {{ loadingState$ | async }}
-    <br />
-    loadingProgress = {{ loadingProgress$ | async }}
-  </div>
-
-  <span
+  <div
     *ngIf="(loadingProgress$ | async) !== 'hide'"
     class="shop__loading"
-    [class.shop__loading-completed]="
-      (loadingProgress$ | async) === 'showCompleted'
-    "
   >
-    SPINNER TODO
-  </span>
+    <app-spinner></app-spinner>
+  </div>
   <div
     *ngIf="(loadingProgress$ | async) === 'hide'"
     class="shop__catalogue-controls"

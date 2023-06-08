@@ -20,16 +20,15 @@ import { ProductDataService } from 'src/app/core/services/product-data.service';
 })
 export class ShopComponent {
   loadingState$ = this.productDataService.loadingState$;
-  // TODO display SKELETON CARDS with ANIMATED SHIMMER
-  // THEN STOP ANIMATING SHIMMER
-  // AND FADE OUT
-  // AND FADE the actual cards IN
+  // TODO SKELETON instead of spinner?
   loadingProgress$ = this.loadingState$.pipe(
     concatMap((state) =>
       state === 'loaded'
         ? concat(
             of('showCompleted'),
-            timer(3000).pipe(map(() => 'hide'))
+            timer(333 + Math.random() * 666).pipe(
+              map(() => 'hide')
+            )
           )
         : of('showSpinner')
     )

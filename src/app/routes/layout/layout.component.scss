@@ -1,6 +1,10 @@
-.router__container {
+.layout__container {
   display: flex;
   justify-content: space-between;
+
+  .router__outlet {
+    flex-grow: 1;
+  }
 }
 
 @media (max-width: 700px) {

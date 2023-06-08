@@ -8,6 +8,7 @@ import { ProductsCartModule } from '../products/cart/products-cart.module';
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
 import { checkoutSuccessGuard } from './checkout-success/checkout-succes.guard';
 import { checkoutGuard } from './checkout/checkout.guard';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ProductsCatalogueModule,
     ProductsCartModule,
+    SharedModule,
   ],
   exports: [RouterModule],
 })
