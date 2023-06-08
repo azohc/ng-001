@@ -43,14 +43,14 @@ export class ProductKeywordFilterComponent
 
   ngAfterViewInit() {
     if (!this.queryInput) return;
-    this.subscription = fromEvent(
+    this.subscription = fromEvent<KeyboardEvent>(
       this.queryInput.nativeElement,
       'keyup'
     )
       .pipe(
-        // TODO why cant I type this event as KeyboardEvent?
-        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-        map((event: any) => event.target.value),
+        map(
+          (event) => (<HTMLInputElement>event.target).value
+        ),
         filter(
           (value: string) =>
             value.length === 0 || value.length > 2
