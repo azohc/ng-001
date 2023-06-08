@@ -6,7 +6,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductsCatalogueModule } from '../products/catalogue/products-catalogue.module';
 import { ProductsCartModule } from '../products/cart/products-cart.module';
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
-import { checkoutSuccessGuard } from './checkout-success/checkout-succes.guard';
+import { checkoutSuccessGuard } from './checkout-success/checkout-success.guard';
 import { checkoutGuard } from './checkout/checkout.guard';
 import { SharedModule } from '../shared/shared.module';
 

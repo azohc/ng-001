@@ -1,14 +1,15 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { CartService } from 'src/app/core/services/cart.service';
 
-export const checkoutGuard: CanActivateFn = () => {
+export const checkoutSuccessGuard: CanActivateFn = () => {
   const cartService = inject(CartService);
   const router = inject(Router);
-  return cartService.cartItems$.pipe(
+  return cartService.checkedOut$.pipe(
+    tap((checkedOut) => console.log('GUARD', checkedOut)),
     map(
-      (items) => !!items.length || router.parseUrl('/shop')
+      (checkedOut) => checkedOut || router.parseUrl('/shop')
     )
   );
 };

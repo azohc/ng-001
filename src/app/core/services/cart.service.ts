@@ -9,27 +9,29 @@ export class CartService {
   private cartItemsSubject = new BehaviorSubject<Product[]>(
     []
   );
-  // what are the ways of making isEmpty into a non-observable member of CartService? is there a concise way? TODO review
-  isEmpty = true;
-  checkedOut = false;
+
+  private checkedOutSubject = new BehaviorSubject(false);
+  checkedOut$ = this.checkedOutSubject.asObservable();
 
   cartItems$ = this.cartItemsSubject.asObservable();
 
   addItemToCart(product: Product) {
-    this.isEmpty = false;
     this.cartItemsSubject.next([
       ...this.cartItemsSubject.getValue(),
       product,
     ]);
   }
 
-  checkout() {
+  checkOut() {
     this.clearCart();
-    this.checkedOut = true;
+    this.checkedOutSubject.next(true);
+  }
+
+  deCheckOut() {
+    this.checkedOutSubject.next(false);
   }
 
   clearCart() {
-    this.isEmpty = true;
     this.cartItemsSubject.next([]);
   }
 }
