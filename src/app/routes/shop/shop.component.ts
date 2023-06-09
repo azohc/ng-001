@@ -56,6 +56,7 @@ export class ShopComponent {
   );
   products$ = this.productDataService.products$;
 
+  // TODO extract to service
   productCategories$ = this.products$.pipe(
     map((products) => {
       const productCategoryMap = new Map<string, number>();
@@ -76,6 +77,7 @@ export class ShopComponent {
   keywordFilter$ = this.catalogueService.keywordFilter$;
   currentPage$ = this.catalogueService.currentPage$;
 
+  // TODO extract to service
   catalogueProducts$ = combineLatest([
     this.products$,
     this.categoryFilter$,
@@ -98,6 +100,7 @@ export class ShopComponent {
     )
   );
 
+  // TODO extract to service
   paginatedCatalogueProducts$ = combineLatest([
     this.catalogueProducts$,
     this.currentPage$,
