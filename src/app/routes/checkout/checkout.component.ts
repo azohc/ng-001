@@ -59,8 +59,9 @@ export class CheckoutComponent
   }
 
   onSubmit() {
-    this.router.navigateByUrl('/success');
     this.cartService.checkOut(this.checkoutForm.value);
+    // TODO navigate to success depending on checkOut's http request success/failure
+    this.router.navigateByUrl('/success');
   }
 
   constructor(
