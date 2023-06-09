@@ -6,21 +6,20 @@
   >
     <app-spinner></app-spinner>
   </div>
-  <div
-    *ngIf="(loadingProgress$ | async) === 'hide'"
-    class="shop__catalogue-controls"
-  >
-    <app-product-category-tabs
-      [productCategories]="
-        (productCategories$ | async) || emptyMap
-      "
-      (tabClicked)="setCategoryFilter($event)"
-    ></app-product-category-tabs>
-    <app-product-keyword-filter
-      [selectedCategory]="(categoryFilter$ | async) || ''"
-      (queryChanged)="setKeywordFilter($event)"
-    >
-    </app-product-keyword-filter>
+  <div *ngIf="(loadingProgress$ | async) === 'hide'">
+    <div class="shop__catalogue-controls">
+      <app-product-category-tabs
+        [productCategories]="
+          (productCategories$ | async) || emptyMap
+        "
+        (tabClicked)="setCategoryFilter($event)"
+      ></app-product-category-tabs>
+      <app-product-keyword-filter
+        [selectedCategory]="(categoryFilter$ | async) || ''"
+        (queryChanged)="setKeywordFilter($event)"
+      >
+      </app-product-keyword-filter>
+    </div>
     <app-products-catalogue
       [products]="
         (paginatedCatalogueProducts$ | async) || []
