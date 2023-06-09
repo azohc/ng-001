@@ -66,22 +66,9 @@
       flex-basis: 75%;
     }
 
-    .product-card__add-to-card {
+    .product-card__add-to-cart {
       align-self: flex-start;
       position: relative;
-    }
-
-    .product-card__add-to-card.clicked {
-      &::after {
-        font-family: Barlow;
-        content: "✓";
-        background-color: #c3c3c3;
-        padding: 4px 8px;
-        text-align: center;
-        position: absolute;
-        inset: 0;
-        border-radius: 3px;
-      }
     }
   }
 }

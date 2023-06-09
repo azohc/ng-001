@@ -1,3 +1,11 @@
+import {
+  trigger,
+  transition,
+  query,
+  style,
+  stagger,
+  animate,
+} from '@angular/animations';
 import { Component, Inject } from '@angular/core';
 import {
   map,
@@ -17,6 +25,19 @@ import { ProductDataService } from 'src/app/core/services/product-data.service';
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        query('#catalogueContainer > *', [
+          style({ opacity: 0 }),
+          stagger(
+            444,
+            animate('666ms', style({ opacity: 1 }))
+          ),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class ShopComponent {
   loadingState$ = this.productDataService.loadingState$;

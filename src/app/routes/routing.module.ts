@@ -9,6 +9,7 @@ import { CheckoutSuccessComponent } from './checkout-success/checkout-success.co
 import { checkoutSuccessGuard } from './checkout-success/checkout-success.guard';
 import { checkoutGuard } from './checkout/checkout.guard';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -49,6 +50,7 @@ const routes: Routes = [
     ProductsCatalogueModule,
     ProductsCartModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   exports: [RouterModule],
 })

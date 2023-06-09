@@ -6,7 +6,11 @@
   >
     <app-spinner></app-spinner>
   </div>
-  <div *ngIf="(loadingProgress$ | async) === 'hide'">
+  <div
+    id="catalogueContainer"
+    [@fadeIn]
+    *ngIf="(loadingProgress$ | async) === 'hide'"
+  >
     <div class="shop__catalogue-controls">
       <app-product-category-tabs
         [productCategories]="
