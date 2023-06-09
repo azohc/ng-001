@@ -6,18 +6,7 @@ import {
   stagger,
   animate,
 } from '@angular/animations';
-import { Component, Inject } from '@angular/core';
-import {
-  map,
-  combineLatest,
-  tap,
-  of,
-  timer,
-  concat,
-  concatMap,
-} from 'rxjs';
-import { APP_SETTINGS } from 'src/app/app.module';
-import { AppSettings } from 'src/app/app.settings';
+import { Component } from '@angular/core';
 import { CatalogueService } from 'src/app/core/services/catalogue.service';
 import { ProductDataService } from 'src/app/core/services/product-data.service';
 
@@ -41,84 +30,27 @@ import { ProductDataService } from 'src/app/core/services/product-data.service';
 })
 export class ShopComponent {
   loadingState$ = this.productDataService.loadingState$;
-  // TODO SKELETON instead of spinner?
-  loadingProgress$ = this.loadingState$.pipe(
-    concatMap((state) =>
-      state === 'loaded'
-        ? concat(
-            of('showCompleted'),
-            timer(111 + Math.random() * 666).pipe(
-              map(() => 'hide')
-            )
-          )
-        : of('showSpinner')
-    )
-  );
+  loadingProgress$ = this.catalogueService.loadingProgress$;
   products$ = this.productDataService.products$;
-
-  // TODO extract to service
-  productCategories$ = this.products$.pipe(
-    map((products) => {
-      const productCategoryMap = new Map<string, number>();
-      products.forEach((product) => {
-        const { category } = product;
-        const numProducts =
-          productCategoryMap.get(category);
-        productCategoryMap.set(
-          category,
-          numProducts ? numProducts + 1 : 1
-        );
-      });
-      return productCategoryMap;
-    })
-  );
 
   categoryFilter$ = this.catalogueService.categoryFilter$;
   keywordFilter$ = this.catalogueService.keywordFilter$;
   currentPage$ = this.catalogueService.currentPage$;
 
-  // TODO extract to service
-  catalogueProducts$ = combineLatest([
-    this.products$,
-    this.categoryFilter$,
-    this.keywordFilter$,
-  ]).pipe(
-    tap(() => this.setCurrentPage(0)),
-    map(([products, categoryFilter, keywordFilter]) =>
-      products.filter((product) => {
-        let condition = true;
-        if (categoryFilter) {
-          condition = product.category === categoryFilter;
-        }
-        if (condition && keywordFilter) {
-          condition = product.title
-            .toLowerCase()
-            .includes(keywordFilter.toLowerCase());
-        }
-        return condition;
-      })
-    )
-  );
+  productCategories$ =
+    this.catalogueService.productCategories$;
 
-  // TODO extract to service
-  paginatedCatalogueProducts$ = combineLatest([
-    this.catalogueProducts$,
-    this.currentPage$,
-  ]).pipe(
-    map(([filteredProducts, currentPage]) =>
-      filteredProducts.slice(
-        currentPage * this.pageSize,
-        (currentPage + 1) * this.pageSize
-      )
-    )
-  );
+  paginatedCatalogueProducts$ =
+    this.catalogueService.paginatedCatalogueProducts$;
 
-  pageSize = this.settings.pageSize;
+  catalogueProducts$ =
+    this.catalogueService.catalogueProducts$;
+
+  pageSize = this.catalogueService.pageSize;
 
   emptyMap = new Map<string, number>();
 
   constructor(
-    @Inject(APP_SETTINGS) private settings: AppSettings,
     private productDataService: ProductDataService,
     private catalogueService: CatalogueService
   ) {}
