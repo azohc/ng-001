@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  HttpClient,
-  HttpClientModule,
-} from '@angular/common/http';
-import {
   Component,
   OnDestroy,
   OnInit,
@@ -23,7 +19,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
   standalone: true,
   imports: [
     CommonModule,
-    HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
   ],
@@ -61,20 +56,13 @@ export class CheckoutComponent
   }
 
   onSubmit() {
-    this.http
-      .post(
-        'localhost:4040/api/todo',
-        this.checkoutForm.value
-      )
-      .subscribe();
     this.router.navigateByUrl('/success');
-    this.cartService.checkOut();
+    this.cartService.checkOut(this.checkoutForm.value);
   }
 
   constructor(
     private router: Router,
-    private cartService: CartService,
-    private http: HttpClient
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
