@@ -31,23 +31,19 @@ export class CatalogueService {
 
   products$ = this.productService.products$;
 
-  productCategories$ = this.products$.pipe(
+  categories$ = this.products$.pipe(
     map((products) => {
-      const productCategoryMap = new Map<string, number>();
+      const itemCountByCategory = new Map<string, number>();
       products.forEach((product) => {
         const { category } = product;
-        const numProducts =
-          productCategoryMap.get(category);
-        productCategoryMap.set(
-          category,
-          numProducts ? numProducts + 1 : 1
-        );
+        const n = itemCountByCategory.get(category);
+        itemCountByCategory.set(category, n ? n + 1 : 1);
       });
-      return productCategoryMap;
+      return itemCountByCategory;
     })
   );
 
-  catalogueProducts$ = combineLatest([
+  filteredProducts$ = combineLatest([
     this.products$,
     this.categoryFilter$,
     this.keywordFilter$,
@@ -55,22 +51,22 @@ export class CatalogueService {
     tap(() => this.setCurrentPage(0)),
     map(([products, categoryFilter, keywordFilter]) =>
       products.filter((product) => {
-        let condition = true;
+        let cond = true;
         if (categoryFilter) {
-          condition = product.category === categoryFilter;
+          cond = product.category === categoryFilter;
         }
-        if (condition && keywordFilter) {
-          condition = product.title
+        if (cond && keywordFilter) {
+          cond = product.title
             .toLowerCase()
             .includes(keywordFilter.toLowerCase());
         }
-        return condition;
+        return cond;
       })
     )
   );
 
   paginatedCatalogueProducts$ = combineLatest([
-    this.catalogueProducts$,
+    this.filteredProducts$,
     this.currentPage$,
   ]).pipe(
     map(([filteredProducts, currentPage]) =>
@@ -81,18 +77,19 @@ export class CatalogueService {
     )
   );
 
-  loadingProgress$ = this.productService.loadingState$.pipe(
-    concatMap((state) =>
-      state === 'loaded'
-        ? concat(
-            of('showCompleted'),
-            timer(111 + Math.random() * 666).pipe(
-              map(() => 'hide')
+  spinnerVisibility$ =
+    this.productService.loadingState$.pipe(
+      concatMap((state) =>
+        state === 'loading'
+          ? of('showSpinner')
+          : concat(
+              of('showCompleted'),
+              timer(111 + Math.random() * 555).pipe(
+                map(() => 'hide')
+              )
             )
-          )
-        : of('showSpinner')
-    )
-  );
+      )
+    );
 
   constructor(
     private productService: ProductDataService,

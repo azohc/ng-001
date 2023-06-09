@@ -1,7 +1,7 @@
 button.btn {
-  border: 2px #d1d1d1 solid;
+  border: 2px #c1c1c1 solid;
   border-radius: 3px;
-  border-color: #d1d1d1;
+  border-color: #c1c1c1;
   min-width: 85px;
   padding: 4px 8px;
   will-change: transform;
@@ -11,7 +11,7 @@ button.btn {
   &:not(:disabled) {
     &:hover {
       transform: scale(1.02);
-      border-color: #a0a0a0;
+      border-color: #b0b0b0;
     }
 
     &:active {

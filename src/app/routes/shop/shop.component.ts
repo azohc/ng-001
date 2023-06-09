@@ -7,6 +7,7 @@ import {
   animate,
 } from '@angular/animations';
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { CatalogueService } from 'src/app/core/services/catalogue.service';
 import { ProductDataService } from 'src/app/core/services/product-data.service';
 
@@ -29,26 +30,26 @@ import { ProductDataService } from 'src/app/core/services/product-data.service';
   ],
 })
 export class ShopComponent {
-  loadingState$ = this.productDataService.loadingState$;
-  loadingProgress$ = this.catalogueService.loadingProgress$;
+  spinnerVisibility$ =
+    this.catalogueService.spinnerVisibility$;
   products$ = this.productDataService.products$;
 
   categoryFilter$ = this.catalogueService.categoryFilter$;
-  keywordFilter$ = this.catalogueService.keywordFilter$;
-  currentPage$ = this.catalogueService.currentPage$;
 
-  productCategories$ =
-    this.catalogueService.productCategories$;
+  keywordFilter$ = this.catalogueService.keywordFilter$;
+
+  currentPage$ = this.catalogueService.currentPage$;
+  pageSize = this.catalogueService.pageSize;
+
+  productCategories$ = this.catalogueService.categories$;
 
   paginatedCatalogueProducts$ =
     this.catalogueService.paginatedCatalogueProducts$;
 
-  catalogueProducts$ =
-    this.catalogueService.catalogueProducts$;
-
-  pageSize = this.catalogueService.pageSize;
-
-  emptyMap = new Map<string, number>();
+  numFilteredProducts$ =
+    this.catalogueService.filteredProducts$.pipe(
+      map((products) => products.length)
+    );
 
   constructor(
     private productDataService: ProductDataService,
@@ -70,4 +71,7 @@ export class ShopComponent {
   fetchProducts() {
     this.productDataService.fetchProducts();
   }
+
+  // ignore me ^_^
+  emptyMap = new Map<string, number>();
 }

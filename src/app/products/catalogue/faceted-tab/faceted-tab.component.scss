@@ -9,11 +9,11 @@ button.tab {
 
   &:hover {
     color: rgba(0 0 0 / 0.6);
-    background-color: #d1d1d1cc;
+    background-color: #c1c1c1cc;
   }
 
   &.active {
     color: rgba(0 0 0 / 1);
-    border-bottom: 3px solid #d1d1d1;
+    border-bottom: 3px solid #c1c1c1;
   }
 }

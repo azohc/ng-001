@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, tap } from 'rxjs';
+import { BehaviorSubject, Subject, map, tap } from 'rxjs';
 import { Product } from '../models/product.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ProductDataService {
-  private loadingStateSubject = new BehaviorSubject<
-    'init' | 'loading' | 'loaded'
-  >('init');
+  private loadingStateSubject = new Subject<
+    'loading' | 'loaded'
+  >();
   loadingState$ = this.loadingStateSubject.asObservable();
 
   private productsSubject = new BehaviorSubject<Product[]>(

@@ -20,17 +20,17 @@
   height: 2rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  border: 2px #d1d1d1 solid;
-  color: #a0a0a0;
+  border: 2px #c1c1c1 solid;
+  color: #b0b0b0;
   transition: border-color 300ms;
 
   &:not(.no-border) {
     &:hover:not(.page-active) {
-      border-color: #a0a0a0;
+      border-color: #b0b0b0;
     }
     &:active {
-      border-color: #a0a0a0;
-      background-color: #a0a0a0;
+      border-color: #b0b0b0;
+      background-color: #b0b0b0;
       color: black;
     }
   }
@@ -38,7 +38,7 @@
 
 .page-active {
   font-weight: 600;
-  background-color: #d1d1d1;
+  background-color: #c1c1c1;
   color: black;
 }
 

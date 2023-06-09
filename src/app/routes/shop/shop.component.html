@@ -1,7 +1,7 @@
 <div class="shop__container">
   <app-heading>Products catalogue</app-heading>
   <div
-    *ngIf="(loadingProgress$ | async) !== 'hide'"
+    *ngIf="(spinnerVisibility$ | async) !== 'hide'"
     class="shop__loading"
   >
     <app-spinner></app-spinner>
@@ -9,7 +9,7 @@
   <div
     id="catalogueContainer"
     [@fadeIn]
-    *ngIf="(loadingProgress$ | async) === 'hide'"
+    *ngIf="(spinnerVisibility$ | async) === 'hide'"
   >
     <div class="shop__catalogue-controls">
       <app-product-category-tabs
@@ -31,9 +31,7 @@
       class="shop__catalogue"
     ></app-products-catalogue>
     <app-page-navigator
-      [totalItems]="
-        (catalogueProducts$ | async)?.length || 0
-      "
+      [totalItems]="(numFilteredProducts$ | async) || 0"
       [pageSize]="pageSize"
       (pageChange)="setCurrentPage($event)"
     ></app-page-navigator>
