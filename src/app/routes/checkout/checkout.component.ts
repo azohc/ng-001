@@ -38,7 +38,10 @@ export class CheckoutComponent
   checkoutForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
     country: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     zipCode: new FormControl('', Validators.required),
