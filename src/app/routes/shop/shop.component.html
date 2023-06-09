@@ -16,7 +16,6 @@
       "
       (tabClicked)="setCategoryFilter($event)"
     ></app-product-category-tabs>
-    <!-- TODO use [(queryChanged)] to pass an initial value for query i.e. to load search from URL params-->
     <app-product-keyword-filter
       [selectedCategory]="(categoryFilter$ | async) || ''"
       (queryChanged)="setKeywordFilter($event)"
